@@ -11,11 +11,10 @@ namespace MVCJogos.DAO
     {
         public static SqlConnection GetConexao()
         {
-            string strCon = "Data Source=DESKTOP-GUILHER\\SQLEXPRESS; Database=CloudScalesDB; user id=sa; password=123456";
+            string strCon = "Data Source=LOCALHOST; Database=CloudScalesDB; user id=sa; password=123456";
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;
-            //teste
         }
     }
 }
