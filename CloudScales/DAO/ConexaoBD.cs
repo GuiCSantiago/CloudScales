@@ -15,6 +15,7 @@ namespace MVCJogos.DAO
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;
+            //teste
         }
     }
 }
