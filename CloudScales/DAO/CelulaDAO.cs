@@ -26,7 +26,7 @@ namespace CloudScales.DAO
         protected override CelulaViewModel MontaModel(DataRow registro)
         {
             CelulaViewModel model = new CelulaViewModel();
-            model.Id = Convert.ToInt32(registro["CaminhaoID"]);
+            model.Id = Convert.ToInt32(registro["Id"]);
             model.EquipamentoID = Convert.ToInt32(registro["EquipamentoID"]);
             model.Peso = Convert.ToDouble(registro["Peso"]);
             model.Posicao = Convert.ToInt32(registro["Posicao"]);
