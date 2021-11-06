@@ -15,7 +15,7 @@ namespace CloudScales.DAO
         {
             SqlParameter[] parametros =
             {
-                new SqlParameter("EquipamentoID", model.Id),
+                new SqlParameter("Id", model.Id),
                 new SqlParameter("CaminhaoID", model.CaminhaoID),
                 new SqlParameter("QtdBalanca", model.QtdBalanca)
             };
@@ -25,7 +25,7 @@ namespace CloudScales.DAO
         protected override EquipamentoViewModel MontaModel(DataRow registro)
         {
             EquipamentoViewModel model = new EquipamentoViewModel();
-            model.Id = Convert.ToInt32(registro["EquipamentoID"]);
+            model.Id = Convert.ToInt32(registro["Id"]);
             model.CaminhaoID = Convert.ToInt32(registro["CaminhaoID"]);
             model.QtdBalanca = Convert.ToInt32(registro["QtdBalanca"]);
             return model;
