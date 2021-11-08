@@ -34,7 +34,7 @@ namespace CloudScales.DAO
         }
         protected override void SetTabela()
         {
-            Tabela = "Equipamento";
+            Tabela = "Celula";
         }
     }
 }
