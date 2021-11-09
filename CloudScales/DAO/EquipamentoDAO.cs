@@ -11,7 +11,7 @@ namespace CloudScales.DAO
 {
     public class EquipamentoDAO : PadraoDAO<EquipamentoViewModel>
     {
-        protected override SqlParameter[] CriaParametros(EquipamentoViewModel model)
+        protected override SqlParameter[] CriaParametros(EquipamentoViewModel model, string operacao)
         {
             SqlParameter[] parametros =
             {

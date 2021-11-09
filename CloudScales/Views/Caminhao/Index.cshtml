@@ -1,0 +1,36 @@
+﻿@model List<CaminhaoViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<h2>Listagem de Caminhões</h2>
+<a href="/caminhao/create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+
+        <th>Id</th>
+        <th>ClienteID</th>
+        <th>Placa do veículo</th>
+        <th>Placa da carreta</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (var caminhao in Model)
+    {
+        <tr>
+            <td>@caminhao.Id</td>
+            <td>@caminhao.ClienteID</td>
+            <td>@caminhao.Placa</td>
+            <td>@caminhao.Carreta</td>
+            <td>
+                <a href="/cidade/Edit?id=@caminhao.Id">Editar</a>
+                <a href="javascript:apagarCidade(@caminhao.Id)">Apagar</a>
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarCidade(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'cidade/Delete?id=' + id;
+    }
+</script>

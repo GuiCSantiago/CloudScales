@@ -59,9 +59,9 @@ namespace CloudScales.Controllers
                 else
                 {
                     if (Operacao == "I")
-                        DAO.Insert(model);
+                        DAO.Insert(model, Operacao);
                     else
-                        DAO.Update(model);
+                        DAO.Update(model, Operacao);
                     return RedirectToAction(NomeViewIndex);
                 }
             }

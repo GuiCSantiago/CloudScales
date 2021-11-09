@@ -11,7 +11,7 @@ namespace CloudScales.DAO
 {
     public class CelulaDAO : PadraoDAO<CelulaViewModel>
     {
-        protected override SqlParameter[] CriaParametros(CelulaViewModel model)
+        protected override SqlParameter[] CriaParametros(CelulaViewModel model, string operacao)
         {
             SqlParameter[] parametros =
             {

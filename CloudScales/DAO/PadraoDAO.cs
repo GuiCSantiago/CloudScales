@@ -17,18 +17,18 @@ namespace MVCJogos.DAO
 
         protected string Tabela { get; set; }
         protected string NomeSpListagem { get; set; } = "spListagem";
-        protected abstract SqlParameter[] CriaParametros(T model);
+        protected abstract SqlParameter[] CriaParametros(T model, string operacao);
         protected abstract T MontaModel(DataRow registro);
         protected abstract void SetTabela();
 
-        public virtual void Insert(T model)
+        public virtual void Insert(T model, string operacao)
         {
-            HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model));
+            HelperDAO.ExecutaProc("spInsert_" + Tabela, CriaParametros(model, operacao));
         }
 
-        public virtual void Update(T model)
+        public virtual void Update(T model, string operacao)
         {
-            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model));
+            HelperDAO.ExecutaProc("spUpdate_" + Tabela, CriaParametros(model, operacao));
         }
 
         public virtual void Delete(int id)
