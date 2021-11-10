@@ -22,15 +22,15 @@
             <td>@caminhao.Placa</td>
             <td>@caminhao.Carreta</td>
             <td>
-                <a href="/cidade/Edit?id=@caminhao.Id">Editar</a>
-                <a href="javascript:apagarCidade(@caminhao.Id)">Apagar</a>
+                <a href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
+                <a href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
             </td>
         </tr>
     }
 </table>
 <script>
-    function apagarCidade(id) {
+    function apagarCaminhao(id) {
         if (confirm('Confirma a exclusão do registro?'))
-            location.href = 'cidade/Delete?id=' + id;
+            location.href = 'caminhao/Delete?id=' + id;
     }
 </script>

@@ -13,14 +13,22 @@ namespace CloudScales.DAO
     {
         protected override SqlParameter[] CriaParametros(CaminhaoViewModel model, string operacao)
         {
-            SqlParameter[] parametros =
+            SqlParameter[] parametros;
+            if (operacao != "I")
             {
-                new SqlParameter("ClienteID", model.ClienteID),
-                new SqlParameter("Placa", model.Placa),
-                new SqlParameter("Carreta", model.Carreta)
-            };
-            if(operacao == "A")
-                parametros[4] = new SqlParameter("Id", model.Id);
+                parametros = new SqlParameter[4];
+                parametros[0] = new SqlParameter("Id", model.Id);
+                parametros[1] = new SqlParameter("ClienteID", model.ClienteID);
+                parametros[2] = new SqlParameter("Placa", model.Placa);
+                parametros[3] = new SqlParameter("Carreta", model.Carreta);
+            }
+            else
+            {
+                parametros = new SqlParameter[3];
+                parametros[0] = new SqlParameter("ClienteID", model.ClienteID);
+                parametros[1] = new SqlParameter("Placa", model.Placa);
+                parametros[2] = new SqlParameter("Carreta", model.Carreta);
+            }
             return parametros;
         }
 
