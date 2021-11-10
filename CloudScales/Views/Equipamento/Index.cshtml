@@ -1,0 +1,32 @@
+﻿@model List<EquipamentoViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Listagem de Equipamentos</h2>
+<a href="/caminhao/create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>Id</th>
+        <th>CaminhaoID</th>
+        <th>QtdBalanca</th>
+    </tr>
+    @foreach (var equip in Model)
+    {
+        <tr>
+            <td>@equip.Id</td>
+            <td>@equip.CaminhaoID</td>
+            <td>@equip.QtdBalanca</td>
+            <td>
+                <a href="/cidade/Edit?id=@equip.Id">Editar</a>
+                <a href="javascript:apagarCidade(@equip.Id)">Apagar</a>
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarCidade(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'cidade/Delete?id=' + id;
+    }
+</script>

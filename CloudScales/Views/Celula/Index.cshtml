@@ -1,1 +1,36 @@
-﻿
+﻿@model List<CelulaViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Listagem de Celulas</h2>
+<a href="/caminhao/create">Novo Registro</a>
+<br />
+<table class="table table-responsive">
+    <tr>
+
+        <th>Id</th>
+        <th>EquipamentoID</th>
+        <th>Peso</th>
+        <th>Posicao</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (var celula in Model)
+    {
+        <tr>
+            <td>@celula.Id</td>
+            <td>@celula.EquipamentoID</td>
+            <td>@celula.Peso</td>
+            <td>@celula.Posicao</td>
+            <td>
+                <a href="/cidade/Edit?id=@celula.Id">Editar</a>
+                <a href="javascript:apagarCidade(@celula.Id)">Apagar</a>
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    function apagarCidade(id) {
+        if (confirm('Confirma a exclusão do registro?'))
+            location.href = 'cidade/Delete?id=' + id;
+    }
+</script>
