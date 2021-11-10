@@ -33,9 +33,6 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Celula" asp-action="Index">Celula</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cliente</a>
-                            </li>
-                            <li>
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Equipamento" asp-action="Index">Equipamento</a>
                             </li>
                             <li>
@@ -44,7 +41,12 @@
                         }
                         else
                         {
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a></li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index">Cadastre-se</a>
+                            </li>
                         }
 
                     </ul>

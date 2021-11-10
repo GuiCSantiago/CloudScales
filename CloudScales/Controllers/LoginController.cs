@@ -15,8 +15,6 @@ namespace CloudScales.Controllers
         }
         public IActionResult FazLogin(string usuario, string senha)
         {
-            //Este é apenas um exemplo, aqui você deve consultar na sua tabela de usuários
-            //se existe esse usuário e senha
             if (usuario == "admin" && senha == "1234")
             {
                 HttpContext.Session.SetString("Logado", "true");
