@@ -13,6 +13,7 @@ namespace CloudScales.Controllers
         public ClienteController()
         {
             DAO = new ClienteDAO();
+            ExigeAutenticacao = false;
             GeraProximoId = true;
         }
         protected override void ValidaDados(ClienteViewModel model)

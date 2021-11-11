@@ -6,6 +6,7 @@
 <div class="row">
     <div class="col-lg-3">
         <form action="/login/Fazlogin" method="post">
+            <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
             <label for="usuario" class="control-label">Usuário</label>
             <input type="text" name="usuario" class="form-control" required placeholder='Usuário...' />
             <label for="senha" class="control-label">Senha</label>

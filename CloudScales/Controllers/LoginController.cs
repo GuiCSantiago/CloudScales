@@ -17,8 +17,10 @@ namespace CloudScales.Controllers
         public IActionResult FazLogin(string usuario, string senha)
         {
             ClienteDAO dao = new ClienteDAO();
-            if (dao.ConsultaLogin(usuario, senha))
+            int aux = dao.ConsultaLogin(usuario, senha);
+            if (aux > 0)
             {
+                ViewBag.clienteID = aux;
                 HttpContext.Session.SetString("Logado", "true");
                 return RedirectToAction("index", "Home");
             }

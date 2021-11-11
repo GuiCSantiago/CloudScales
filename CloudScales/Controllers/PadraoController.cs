@@ -28,7 +28,7 @@ namespace CloudScales.Controllers
             }
         }
 
-        public virtual IActionResult Index()
+        public virtual IActionResult Index(string clienteID)
         {
             try
             {
@@ -40,10 +40,11 @@ namespace CloudScales.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public virtual IActionResult Create()
+        public virtual IActionResult Create(int clienteID)
         {
             try
             {
+                ViewBag.clienteID = clienteID;
                 ViewBag.Operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
@@ -59,7 +60,7 @@ namespace CloudScales.Controllers
             if (GeraProximoId && Operacao == "I")
                 model.Id = DAO.ProximoId();
         }
-        public virtual IActionResult Save(T model, string Operacao)
+        public virtual IActionResult Save(T model, string Operacao, int clienteId)
         {
             try
             {
