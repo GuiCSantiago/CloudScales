@@ -2,27 +2,22 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Listagem de Clientes</h2>
+<h2>Listagem de Usuários</h2>
 <a href="/cliente/create">Novo Registro</a>
 <br />
 <table class="table table-responsive">
     <tr>
-
-        <th>Id</th>
         <th>Nome</th>
         <th>CNPJ</th>
         <th>Email</th>
-        <th>Senha</th>
         <th>Ações</th>
     </tr>
     @foreach (var cliente in Model)
     {
         <tr>
-            <td>@cliente.Id</td>
             <td>@cliente.Nome</td>
             <td>@cliente.CNPJ</td>
             <td>@cliente.Email</td>
-            <td>@cliente.Senha</td>
             <td>
                 <a href="/cliente/Edit?id=@cliente.Id">Editar</a>
                 <a href="javascript:apagarCliente(@cliente.Id)">Apagar</a>

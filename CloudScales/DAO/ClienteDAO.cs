@@ -49,5 +49,18 @@ namespace CloudScales.DAO
             Tabela = "Cliente";
         }
 
+        public Boolean ConsultaLogin(string login, string senha)
+        {
+            var p = new SqlParameter[]
+            {
+                new SqlParameter("login", login),
+                new SqlParameter("senha", senha)
+            };
+            var tabela = HelperDAO.ExecutaProcSelect("spConsultaLogin", p);
+            if (tabela.Rows.Count == 0)
+                return false;
+            else
+                return true;
+        }
     }
 }

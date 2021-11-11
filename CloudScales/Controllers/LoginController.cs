@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CloudScales.DAO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace CloudScales.Controllers
         }
         public IActionResult FazLogin(string usuario, string senha)
         {
-            if (usuario == "admin" && senha == "1234")
+            ClienteDAO dao = new ClienteDAO();
+            if (dao.ConsultaLogin(usuario, senha))
             {
                 HttpContext.Session.SetString("Logado", "true");
                 return RedirectToAction("index", "Home");
