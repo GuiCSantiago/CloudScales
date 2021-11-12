@@ -32,6 +32,9 @@ namespace CloudScales.Controllers
 
         public virtual IActionResult Index()
         {
+            string json = HttpContext.Session.GetString("Logado");
+            ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+
             try
             {
                 var lista = DAO.Listagem();
@@ -47,8 +50,14 @@ namespace CloudScales.Controllers
             try
             {
                 string json = HttpContext.Session.GetString("Logado");
-                ClienteViewModel c = JsonConvert.DeserializeObject<ClienteViewModel>(json);
-                ViewBag.ClienteID = c.Id;
+                ClienteViewModel cliente = new ClienteViewModel();
+
+                if(json == string.Empty || json == null)
+                    cliente.Id = 1;
+                else
+                    cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+
+                ViewBag.ClienteID = cliente.Id;
                 ViewBag.Operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
@@ -81,7 +90,7 @@ namespace CloudScales.Controllers
                         DAO.Insert(model, Operacao);
                     else
                         DAO.Update(model, Operacao);
-                    return RedirectToAction(NomeViewIndex);
+                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception erro)
