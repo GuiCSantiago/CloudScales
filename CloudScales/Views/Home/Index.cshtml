@@ -2,6 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
 }
 <form action="/caminhao/create" method="post">
     <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
@@ -16,7 +17,3 @@
 <br />
 <br />
 <a class="btn btn-info" href="/login/LogOff">Logoff</a>
-
-
-
-

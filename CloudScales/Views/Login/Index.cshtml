@@ -1,22 +1,25 @@
 ﻿@{
+    Layout = "~/Views/Shared/_LayoutSemHeader.cshtml";
     ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Login</h2>
-<div class="row">
-    <div class="col-lg-3">
-        <form action="/login/Fazlogin" method="post">
+<link rel="stylesheet" href="~/css/pages/login/login.css" />
+<div class="login-main row m-0">
+    <div class="col-left col-lg-7">
+        <img src="~/img/logo.png" />
+    </div>
+    <div class="col-right col-lg-5">
+        <form action="/login/Fazlogin" method="post" class="form-group">
             <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
-            <label for="usuario" class="control-label">Usuário</label>
-            <input type="text" name="usuario" class="form-control" required placeholder='Usuário...' />
-            <label for="senha" class="control-label">Senha</label>
-            <input type="password" name="senha" class="form-control" required placeholder='Senha...' />
-            <br />
-            <input type="submit" value="Login" class="btn btn-success" />
-            <br />
+            <label for="usuario" class="control-label font-weight-bold text-white">Usuário</label>
+            <input type="text" name="usuario" class="form-control" required placeholder='Usuário' />
+            <label for="senha" class="control-label font-weight-bold text-white">Senha</label>
+            <input type="password" name="senha" class="form-control" required placeholder='Senha' />
             <span class="text-danger"> @ViewBag.Erro</span>
-            <br />
-            <a class="btn btn-success" href="/cliente/create">Cadastre-se</a>
+
+            <div class="w-100 mt-3" style="display: flex; justify-content: space-between; align-items: center">
+                <input type="submit" value="Login" class="btn btn-success" />
+                <a class="btn btn-outline-warning font-weight-bold" href="/cliente/create">Cadastre-se</a>
+            </div>            
         </form>
     </div>
 </div>
