@@ -9,6 +9,7 @@
     </div>
     <div class="col-right col-lg-5">
         <form action="/login/Fazlogin" method="post" class="form-group">
+            <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
             <label for="usuario" class="control-label font-weight-bold text-white">Usuário</label>
             <input type="text" name="usuario" class="form-control" required placeholder='Usuário' />
             <label for="senha" class="control-label font-weight-bold text-white">Senha</label>

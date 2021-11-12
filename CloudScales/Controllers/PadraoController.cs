@@ -1,7 +1,9 @@
 ﻿using CloudScales.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MVCJogos.DAO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +46,9 @@ namespace CloudScales.Controllers
         {
             try
             {
+                string json = HttpContext.Session.GetString("Logado");
+                ClienteViewModel c = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                ViewBag.ClienteID = c.Id;
                 ViewBag.Operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
@@ -59,7 +64,7 @@ namespace CloudScales.Controllers
             if (GeraProximoId && Operacao == "I")
                 model.Id = DAO.ProximoId();
         }
-        public virtual IActionResult Save(T model, string Operacao)
+        public virtual IActionResult Save(T model, string Operacao, int clienteId)
         {
             try
             {

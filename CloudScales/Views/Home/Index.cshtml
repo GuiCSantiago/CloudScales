@@ -1,4 +1,19 @@
-﻿@{
+﻿@model CaminhaoViewModel 
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Home";
 }
+<form action="/caminhao/create" method="post">
+    <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
+    <input class="btn btn-info" type="submit" value="Caminhao" />
+    <br />
+</form>
+<br />
+<a class="btn btn-info" href="/equipamento/create">Equipamento</a>
+<br />
+<br />
+<a class="btn btn-info" href="/celula/create">Celula</a>
+<br />
+<br />
+<a class="btn btn-info" href="/login/LogOff">Logoff</a>
