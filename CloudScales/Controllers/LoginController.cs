@@ -1,6 +1,8 @@
 ﻿using CloudScales.DAO;
+using CloudScales.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +22,9 @@ namespace CloudScales.Controllers
             int aux = dao.ConsultaLogin(usuario, senha);
             if (aux > 0)
             {
-                ViewBag.clienteID = aux;
-                HttpContext.Session.SetString("Logado", "true");
+                ClienteViewModel model = dao.Consulta(aux);
+                string json = JsonConvert.SerializeObject(model);
+                HttpContext.Session.SetString("Logado", json);
                 return RedirectToAction("index", "Home");
             }
             else

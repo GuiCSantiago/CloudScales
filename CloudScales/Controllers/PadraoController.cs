@@ -1,7 +1,9 @@
 ﻿using CloudScales.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MVCJogos.DAO;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,7 @@ namespace CloudScales.Controllers
             }
         }
 
-        public virtual IActionResult Index(string clienteID)
+        public virtual IActionResult Index()
         {
             try
             {
@@ -40,11 +42,13 @@ namespace CloudScales.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        public virtual IActionResult Create(int clienteID)
+        public virtual IActionResult Create()
         {
             try
             {
-                ViewBag.clienteID = clienteID;
+                string json = HttpContext.Session.GetString("Logado");
+                ClienteViewModel c = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                ViewBag.ClienteID = c.Id;
                 ViewBag.Operacao = "I";
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
