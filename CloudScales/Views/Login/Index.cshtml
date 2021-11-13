@@ -9,11 +9,12 @@
     </div>
     <div class="col-right col-lg-5">
         <form action="/login/Fazlogin" method="post" class="form-group">
+            <h2 class="mb-3 text-white text-center">Login</h2>
             <input type="hidden" name="Operacao" value="@ViewBag.clienteID" />
-            <label for="usuario" class="control-label font-weight-bold text-white">Usuário</label>
-            <input type="text" name="usuario" class="form-control" required placeholder='Usuário' />
-            <label for="senha" class="control-label font-weight-bold text-white">Senha</label>
-            <input type="password" name="senha" class="form-control" required placeholder='Senha' />
+            <label for="usuario" class="control-label font-weight-bold text-white">Email</label>
+            <input type="text" name="usuario" class="form-control" required placeholder='email@email.com' />
+            <label for="senha" class="control-label font-weight-bold text-white mt-2">Senha</label>
+            <input type="password" name="senha" class="form-control" required placeholder='******' />
             <span class="text-danger"> @ViewBag.Erro</span>
 
             <div class="w-100 mt-3" style="display: flex; justify-content: space-between; align-items: center">
