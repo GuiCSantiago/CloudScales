@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CloudScales</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/pages/dashboard/dashboard.css" />    
+</head>
+<body>
+    <div class="grid-container">
+      <header class="header">
+          <div class="header__search">Buscar...</div>
+      </header>
+      <aside class="sidenav">
+          <div style="background-color: #0044a0" class="row justify-content-center align-items-center">
+              <img src="~/img/Logo2.png" height="100" width="100"/>
+          </div>          
+          <ul class="sidenav__list">
+            <li class="sidenav__list-item">Caminhão</li>
+            <li class="sidenav__list-item">Equipamento</li>
+            <li class="sidenav__list-item">Célula</li>            
+          </ul>
+          <a class="sidenav__list-item mt-auto" href="/home">Sair</a>
+      </aside>
+      <main class="main" role="main">
+          @RenderBody()
+      </main>
+      <footer class="footer">
+          <div class="footer__copyright">&copy; 2021 - CloudScales</div>
+          <div class="footer__signature">by Splitec</div>
+      </footer>
+    </div>    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

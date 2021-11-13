@@ -1,11 +1,12 @@
 ﻿@model List<CaminhaoViewModel>
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-} 
-<h2>Listagem de Caminhões</h2>
-<a href="/caminhao/create">Novo Registro</a>
+}
+<h2 class="text-white">Listagem de Caminhões</h2>
+<a class="btn btn-light my-2" href="/caminhao/create">Novo Registro</a>
 <br />
-<table class="table table-responsive">
+<table class="table table-responsive text-white">
     <tr>
 
         <th>Id</th>
@@ -22,8 +23,9 @@
             <td>@caminhao.Placa</td>
             <td>@caminhao.Carreta</td>
             <td>
-                <a href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
-                <a href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
+                <a class="btn btn-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
+                <a class="btn btn-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
+                <a class="btn btn-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
             </td>
         </tr>
     }

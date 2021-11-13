@@ -20,5 +20,14 @@ namespace CloudScales.Controllers
             ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
             return View();
         }
+
+        public IActionResult Sobre()
+        {
+            string json = HttpContext.Session.GetString("Logado");
+
+            ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
+            ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            return View();
+        }
     }
 }
