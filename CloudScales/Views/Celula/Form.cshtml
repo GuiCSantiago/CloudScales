@@ -11,7 +11,7 @@
             <input asp-for="Id" class="form-control" readonly />
             <br />
             <label for="EquipamentoID" class="control-label">EquipamentoID</label>
-            <input asp-for="EquipamentoID" class="form-control" />
+            <select asp-for="EquipamentoID" asp-items="ViewBag.Equipamentos" class="form-control"> </select>
             <span asp-validation-for="EquipamentoID" class="text-danger"></span>
             <br />
             <label for="Peso" class="control-label">Peso</label>

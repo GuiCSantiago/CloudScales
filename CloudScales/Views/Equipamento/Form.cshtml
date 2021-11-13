@@ -10,8 +10,8 @@
             <label for="Id" class="control-label">Id</label>
             <input asp-for="Id" class="form-control" readonly />
             <br />
-            <label for="CaminhaoID" class="control-label">CaminhaoID</label>
-            <input asp-for="CaminhaoID" class="form-control" />
+            <label for="CaminhaoID" class="control-label">Caminhao</label>
+            <select asp-for="CaminhaoID" asp-items="ViewBag.Caminhoes" class="form-control"> </select>
             <span asp-validation-for="CaminhaoID" class="text-danger"></span>
             <br />
             <label for="QtdBalanca" class="control-label">QtdBalanca</label>
