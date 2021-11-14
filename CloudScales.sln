@@ -3,7 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudScales", "CloudScales\CloudScales.csproj", "{8F11E0B5-BF56-469D-A54B-E1F86710D572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudScales", "CloudScales\CloudScales.csproj", "{8F11E0B5-BF56-469D-A54B-E1F86710D572}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CloudScalesDB", "CloudScalesDB", "{2B9EA2C6-F855-4679-9A6F-9BF88550C172}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\CloudScales DB\Banco de dados.sql = ..\..\..\..\Desktop\CloudScales DB\Banco de dados.sql
+		..\..\..\..\Desktop\CloudScales DB\CloudScalesDB.sql = ..\..\..\..\Desktop\CloudScales DB\CloudScalesDB.sql
+		..\..\..\..\Desktop\CloudScales DB\Function.sql = ..\..\..\..\Desktop\CloudScales DB\Function.sql
+		..\..\..\..\Desktop\CloudScales DB\ProcedureCaminhao.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCaminhao.sql
+		..\..\..\..\Desktop\CloudScales DB\ProcedureCelula.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCelula.sql
+		..\..\..\..\Desktop\CloudScales DB\ProcedureCliente.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCliente.sql
+		..\..\..\..\Desktop\CloudScales DB\ProcedureEquipamento.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureEquipamento.sql
+		..\..\..\..\Desktop\CloudScales DB\ProceduresPadrao.sql = ..\..\..\..\Desktop\CloudScales DB\ProceduresPadrao.sql
+		..\..\..\..\Desktop\CloudScales DB\Triggers - Cursor.sql = ..\..\..\..\Desktop\CloudScales DB\Triggers - Cursor.sql
+		..\..\..\..\Desktop\CloudScales DB\Views.sql = ..\..\..\..\Desktop\CloudScales DB\Views.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
