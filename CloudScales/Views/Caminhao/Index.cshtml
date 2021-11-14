@@ -3,13 +3,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 } 
 <h2>Listagem de Caminhões</h2>
-<a href="/caminhao/create">Novo Registro</a>
+<a class="btn btn-outline-light" href="/caminhao/create">Novo Registro</a>
+<br />
 <br />
 <table class="table table-responsive">
     <tr>
-
-        <th>Id</th>
-        <th>ClienteID</th>
         <th>Placa do veículo</th>
         <th>Placa da carreta</th>
         <th>Ações</th>
@@ -17,13 +15,11 @@
     @foreach (var caminhao in Model)
     {
         <tr>
-            <td>@caminhao.Id</td>
-            <td>@caminhao.ClienteID</td>
             <td>@caminhao.Placa</td>
             <td>@caminhao.Carreta</td>
             <td>
-                <a href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
-                <a href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
+                <a class="btn btn-outline-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
+                <a class="btn btn-outline-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
             </td>
         </tr>
     }

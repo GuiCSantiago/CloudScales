@@ -35,11 +35,12 @@ namespace CloudScales.Controllers
         public virtual IActionResult Index()
         {
             string json = HttpContext.Session.GetString("Logado");
-            ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+            ViewBag.NomeUser = model.Nome;
 
             try
             {
-                var lista = DAO.Listagem();
+                var lista = DAO.Listagem(model.Id);
                 return View(NomeViewIndex, lista);
             }
             catch (Exception erro)
@@ -116,6 +117,15 @@ namespace CloudScales.Controllers
                 var model = DAO.Consulta(id);
                 PreparaListaEquipamentosParaCombo();
                 PreparaListaCaminhaoParaCombo();
+                string json = HttpContext.Session.GetString("Logado");
+                ClienteViewModel cliente = new ClienteViewModel();
+
+                if (json == string.Empty || json == null)
+                    cliente.Id = 1;
+                else
+                    cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                ViewBag.ClienteID = cliente.Id;
+
                 if (model == null)
                     return RedirectToAction(NomeViewIndex);
                 else

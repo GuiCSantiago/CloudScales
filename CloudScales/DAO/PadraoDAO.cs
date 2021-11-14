@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace MVCJogos.DAO
 {
@@ -66,12 +65,12 @@ namespace MVCJogos.DAO
             return Convert.ToInt32(tabela.Rows[0][0]);
         }
 
-        public virtual List<T> Listagem()
+        public virtual List<T> Listagem(int id)
         {
             var p = new SqlParameter[]
             {
-                new SqlParameter("tabela", Tabela),
-                new SqlParameter("Ordem", "1") 
+                new SqlParameter("id", id),
+                new SqlParameter("tabela", Tabela)
             };
             var tabela = HelperDAO.ExecutaProcSelect(NomeSpListagem, p);
             List<T> lista = new List<T>();
