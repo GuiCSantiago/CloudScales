@@ -170,7 +170,7 @@ namespace CloudScales.Controllers
             CaminhaoDAO dao = new CaminhaoDAO();
             var caminhoes = dao.ListaCaminhao();
             List<SelectListItem> lista = new List<SelectListItem>();
-            lista.Add(new SelectListItem("Selecione a Balança...", "0"));
+            lista.Add(new SelectListItem("Selecione o caminhão...", "0"));
             foreach (var caminhao in caminhoes)
             {
                 SelectListItem item = new SelectListItem(caminhao.Placa, caminhao.Id.ToString());
