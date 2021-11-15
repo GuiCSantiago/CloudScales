@@ -60,11 +60,14 @@ namespace CloudScales.Controllers
                 if(json == string.Empty || json == null)
                     cliente.Id = 1;
                 else
+                {
                     cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                    ViewBag.NomeUser = cliente.Nome;
+                }                    
 
                 ViewBag.ClienteID = cliente.Id;
                 ViewBag.Operacao = "I";
-                ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+                
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
                 PreparaListaEquipamentosParaCombo();
@@ -130,7 +133,6 @@ namespace CloudScales.Controllers
                 var model = DAO.Consulta(id);
                 PreparaListaEquipamentosParaCombo();
                 PreparaListaCaminhaoParaCombo();
-                string json = HttpContext.Session.GetString("Logado");
                 ClienteViewModel cliente = new ClienteViewModel();
 
                 if (json == string.Empty || json == null)

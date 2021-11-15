@@ -2,24 +2,24 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 } 
-<h2>Cadastro de Caminhões</h2>
+<h2 class="text-white">Cadastro de Caminhões</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Save">
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <label for="Id" class="control-label">Id</label>
+            <label for="Id" class="control-label font-weight-bold text-white">Id</label>
             <input asp-for="Id" class="form-control" readonly />
             <br />
             <input type="hidden" name="ClienteID" value="@ViewBag.ClienteID" />
-            <label for="Placa" class="control-label">Placa do Veículo</label>
+            <label for="Placa" class="control-label font-weight-bold text-white">Placa do Veículo</label>
             <input asp-for="Placa" class="form-control" />
             <span asp-validation-for="Placa" class="text-danger"></span>
             <br />
-            <label for="Carreta" class="control-label">Placa da Carreta</label>
+            <label for="Carreta" class="control-label font-weight-bold text-white">Placa da Carreta</label>
             <input asp-for="Carreta" class="form-control" />
             <span asp-validation-for="Carreta" class="text-danger"></span>
             <br />
-            <input type="submit" value="Salvar dados" />
+            <input type="submit" value="Cadastrar" class="btn btn-light" />
             <br />
             <span class="text-danger">@ViewBag.Erro</span>
         </form>

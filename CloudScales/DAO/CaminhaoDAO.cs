@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CloudScales.DAO
@@ -53,6 +54,54 @@ namespace CloudScales.DAO
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
             return lista;
+        }
+
+        public List<CaminhaoViewModel> FiltrarConteudo(CaminhaoViewModel filter)
+        {
+            var caminhoesFiltrados = new List<CaminhaoViewModel>();
+
+            StringBuilder query = new StringBuilder();
+
+            query.Append($@"
+                            select 
+                                 *
+                            from
+	                            dbo.Caminhao
+                            where
+                                 1=1 ");
+
+            if (!string.IsNullOrEmpty(filter.Placa))
+                query.Append($" and Placa like '%{filter.Placa}%' ");
+
+            if (!string.IsNullOrEmpty(filter.Carreta))
+                query.Append($" and Carreta like '%{filter.Carreta}%' ");
+
+            using (SqlConnection conexao = ConexaoBD.GetConexao())
+            {
+                using (SqlCommand comando = new SqlCommand(query.ToString(), conexao))
+                {
+                    SqlDataReader dataReader = comando.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        CaminhaoViewModel caminhao = new CaminhaoViewModel
+                        {
+                            Id = Convert.ToInt32(dataReader["ID"]),
+                            ClienteID = Convert.ToInt32(dataReader["ClienteID"]),
+                            Placa = Convert.ToString(dataReader["Placa"]),
+                            Carreta = Convert.ToString(dataReader["Carreta"])
+                        };
+
+                        caminhoesFiltrados.Add(caminhao);
+                    }
+
+                }
+
+                conexao.Close();
+            }
+
+            return caminhoesFiltrados;
+
         }
     }
 }

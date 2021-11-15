@@ -2,11 +2,9 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Listagem de Celulas</h2>
-<a class="btn btn-outline-light" href="/celula/create">Novo Registro</a>
-<br />
-<br />
-<table class="table table-responsive">
+<h2 class="text-white">Listagem de Celulas</h2>
+<a class="btn btn-light my-3" href="/celula/create">Novo Registro</a>
+<table class="table table-responsive text-white">
     <tr>
         <th>ID</th>
         <th>EquipamentoID</th>
@@ -30,7 +28,7 @@
 </table>
 <script>
     function apagarCelula(id) {
-        if (confirm('Confirma a exclusão do registro?'))
+        if (confirm('Todos os registros desta célula serão excluídos! Confirma exclusão?'))
             location.href = 'celula/Delete?id=' + id;
     }
 </script>

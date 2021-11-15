@@ -4,27 +4,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2 class="text-white">Listagem de Caminhões</h2>
-<a class="btn btn-outline-light" href="/caminhao/create">Novo Registro</a>
-<br />
-<table class="table table-responsive text-white">
-    <tr>
-        <th>Placa do veículo</th>
-        <th>Placa da carreta</th>
-        <th>Ações</th>
-    </tr>
-    @foreach (var caminhao in Model)
-    {
-        <tr>
-            <td>@caminhao.Placa</td>
-            <td>@caminhao.Carreta</td>
-            <td>
-                <a class="btn btn-outline-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
-                <a class="btn btn-outline-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
-                <a class="btn btn-outline-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
-            </td>
-        </tr>
-    }
-</table>
+<a class="btn btn-light my-3" href="/caminhao/create">Novo Registro</a>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-responsive text-white">
+            <tr>
+                <th>Placa do veículo</th>
+                <th>Placa da carreta</th>
+                <th>Ações</th>
+            </tr>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var caminhao in Model)
+                {
+                    <tr>
+                        <td>@caminhao.Placa</td>
+                        <td>@caminhao.Carreta</td>
+                        <td>
+                            <a class="btn btn-outline-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
+                            <a class="btn btn-outline-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
+                            <a class="btn btn-outline-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td>
+                        Nenhum registro encontrado.
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
     function apagarCaminhao(id) {
         if (confirm('Todos os registros deste caminhão serão excluídos! Confirma exclusão?'))

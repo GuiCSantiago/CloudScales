@@ -10,7 +10,7 @@ namespace CloudScales.Controllers
 {
     public class CaminhaoController : PadraoController<CaminhaoViewModel>
     {
-        public CaminhaoController() 
+        public CaminhaoController()
         {
             DAO = new CaminhaoDAO();
             GeraProximoId = true;

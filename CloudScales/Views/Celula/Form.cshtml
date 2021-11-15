@@ -2,27 +2,27 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Cadastro de Celulas</h2>
+<h2 class="text-white">Cadastro de Celulas</h2>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Save">
             <input type="hidden" name="Operacao" value="@ViewBag.Operacao" />
-            <label for="Id" class="control-label">Id</label>
+            <label for="Id" class="control-label font-weight-bold text-white">Id</label>
             <input asp-for="Id" class="form-control" readonly />
             <br />
-            <label for="EquipamentoID" class="control-label">EquipamentoID</label>
+            <label for="EquipamentoID" class="control-label font-weight-bold text-white">EquipamentoID</label>
             <select asp-for="EquipamentoID" asp-items="ViewBag.Equipamentos" class="form-control"> </select>
             <span asp-validation-for="EquipamentoID" class="text-danger"></span>
             <br />
-            <label for="Peso" class="control-label">Peso</label>
+            <label for="Peso" class="control-label font-weight-bold text-white">Peso</label>
             <input asp-for="Peso" class="form-control" />
             <span asp-validation-for="Peso" class="text-danger"></span>
             <br />
-            <label for="Posicao" class="control-label">Posicao</label>
+            <label for="Posicao" class="control-label font-weight-bold text-white">Posicao</label>
             <input asp-for="Posicao" class="form-control" />
             <span asp-validation-for="Posicao" class="text-danger"></span>
             <br />
-            <input type="submit" value="Salvar dados" />
+            <input type="submit" value="Cadastrar" class="btn btn-light" />
             <br />
             <span class="text-danger">@ViewBag.Erro</span>
         </form>
