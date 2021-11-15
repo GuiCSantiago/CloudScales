@@ -3,12 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Listagem de Celulas</h2>
-<a href="/celula/create">Novo Registro</a>
+<a class="btn btn-outline-light" href="/celula/create">Novo Registro</a>
+<br />
 <br />
 <table class="table table-responsive">
     <tr>
-
-        <th>Id</th>
+        <th>ID</th>
         <th>EquipamentoID</th>
         <th>Peso</th>
         <th>Posicao</th>
@@ -22,8 +22,8 @@
             <td>@celula.Peso</td>
             <td>@celula.Posicao</td>
             <td>
-                <a href="/celula/Edit?id=@celula.Id">Editar</a>
-                <a href="javascript:apagarCelula(@celula.Id)">Apagar</a>
+                <a class="btn btn-outline-warning" href="/celula/Edit?id=@celula.Id">Editar</a>
+                <a class="btn btn-outline-danger" href="javascript:apagarCelula(@celula.Id)">Apagar</a>
             </td>
         </tr>
     }

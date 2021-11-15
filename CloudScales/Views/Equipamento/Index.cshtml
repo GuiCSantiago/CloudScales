@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Listagem de Equipamentos</h2>
-<a href="/equipamento/create">Novo Registro</a>
+<a class="btn btn-outline-light" href="/equipamento/create">Novo Registro</a>
+<br />
 <br />
 <table class="table table-responsive">
     <tr>
@@ -18,15 +19,15 @@
             <td>@equip.CaminhaoID</td>
             <td>@equip.QtdBalanca</td>
             <td>
-                <a href="/equipamento/Edit?id=@equip.Id">Editar</a>
-                <a href="javascript:apagarEquipamento(@equip.Id)">Apagar</a>
+                <a class="btn btn-outline-warning" href="/equipamento/Edit?id=@equip.Id">Editar</a>
+                <a class="btn btn-outline-danger" href="javascript:apagarEquipamento(@equip.Id)">Apagar</a>
             </td>
         </tr>
     }
 </table>
 <script>
     function apagarEquipamento(id) {
-        if (confirm('Confirma a exclusão do registro?'))
+        if (confirm('Todos os registros deste equipamento serão excluídos! Confirma exclusão?'))
             location.href = 'equipamento/Delete?id=' + id;
     }
 </script>

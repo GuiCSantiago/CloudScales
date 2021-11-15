@@ -45,5 +45,14 @@ namespace CloudScales.DAO
         {
             Tabela = "Caminhao";
         }
+
+        public List<CaminhaoViewModel> ListaCaminhao()
+        {
+            List<CaminhaoViewModel> lista = new List<CaminhaoViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemCaminhao", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
     }
 }

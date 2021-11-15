@@ -4,13 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2 class="text-white">Listagem de Caminhões</h2>
-<a class="btn btn-light my-2" href="/caminhao/create">Novo Registro</a>
+<a class="btn btn-outline-light" href="/caminhao/create">Novo Registro</a>
 <br />
 <table class="table table-responsive text-white">
     <tr>
-
-        <th>Id</th>
-        <th>ClienteID</th>
         <th>Placa do veículo</th>
         <th>Placa da carreta</th>
         <th>Ações</th>
@@ -18,21 +15,19 @@
     @foreach (var caminhao in Model)
     {
         <tr>
-            <td>@caminhao.Id</td>
-            <td>@caminhao.ClienteID</td>
             <td>@caminhao.Placa</td>
             <td>@caminhao.Carreta</td>
             <td>
-                <a class="btn btn-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
-                <a class="btn btn-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
-                <a class="btn btn-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
+                <a class="btn btn-outline-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
+                <a class="btn btn-outline-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
+                <a class="btn btn-outline-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
             </td>
         </tr>
     }
 </table>
 <script>
     function apagarCaminhao(id) {
-        if (confirm('Confirma a exclusão do registro?'))
+        if (confirm('Todos os registros deste caminhão serão excluídos! Confirma exclusão?'))
             location.href = 'caminhao/Delete?id=' + id;
     }
 </script>

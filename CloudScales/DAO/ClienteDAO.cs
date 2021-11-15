@@ -1,4 +1,5 @@
-﻿using CloudScales.Models.ViewModels;
+﻿using CloudScales.Models.Exceptions;
+using CloudScales.Models.ViewModels;
 using MVCJogos.DAO;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,19 @@ namespace CloudScales.DAO
                 return 0;
             else
                 return MontaModel(tabela.Rows[0]).Id;
+        }
+
+        public override void Insert(ClienteViewModel model, string operacao) 
+        {
+            try
+            {
+                base.Insert(model, operacao);
+            } 
+            catch (SqlException e)
+            {
+                string mensagem = e.Message.Split("\n").Last();
+                throw new SqlConcurrencyException(mensagem);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CloudScales.DAO;
 using CloudScales.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,7 @@ namespace CloudScales.Controllers
             if (model.QtdBalanca <= 0)
                 ModelState.AddModelError("QtdBalanca", "Preencha a quantidade!");
         }
+
+        
     }
 }

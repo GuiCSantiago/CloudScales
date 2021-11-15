@@ -11,13 +11,14 @@ namespace CloudScales.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(int clienteID)
+        public IActionResult Index()
         {
             string json = HttpContext.Session.GetString("Logado");
-
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
-            ViewBag.clienteID = clienteID;
-            ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            if(ViewBag.Logado)
+                ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            else
+                return RedirectToAction("index", "Login");
             return View();
         }
 

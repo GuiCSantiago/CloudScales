@@ -1,11 +1,15 @@
-﻿using CloudScales.Models.ViewModels;
+﻿using CloudScales.DAO;
+using CloudScales.Models.Exceptions;
+using CloudScales.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MVCJogos.DAO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,11 +37,12 @@ namespace CloudScales.Controllers
         public virtual IActionResult Index()
         {
             string json = HttpContext.Session.GetString("Logado");
-            ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+            ViewBag.NomeUser = model.Nome;
 
             try
             {
-                var lista = DAO.Listagem();
+                var lista = DAO.Listagem(model.Id);
                 return View(NomeViewIndex, lista);
             }
             catch (Exception erro)
@@ -62,6 +67,8 @@ namespace CloudScales.Controllers
                 ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
+                PreparaListaEquipamentosParaCombo();
+                PreparaListaCaminhaoParaCombo();
                 return View(NomeViewForm, model);
             }
             catch (Exception erro)
@@ -83,6 +90,8 @@ namespace CloudScales.Controllers
                 {
                     ViewBag.Operacao = Operacao;
                     PreencheDadosParaView(Operacao, model);
+                    PreparaListaEquipamentosParaCombo();
+                    PreparaListaCaminhaoParaCombo();
                     return View(NomeViewForm, model);
                 }
                 else
@@ -93,6 +102,13 @@ namespace CloudScales.Controllers
                         DAO.Update(model, Operacao);
                     return RedirectToAction("Index", "Home");
                 }
+            }
+            catch (SqlConcurrencyException erro)
+            {
+                ViewBag.Operacao = Operacao;
+                PreencheDadosParaView(Operacao, model);
+                ViewBag.Erro = erro.Message;
+                return View(NomeViewForm, model);
             }
             catch (Exception erro)
             {
@@ -112,6 +128,17 @@ namespace CloudScales.Controllers
             {
                 ViewBag.Operacao = "A";
                 var model = DAO.Consulta(id);
+                PreparaListaEquipamentosParaCombo();
+                PreparaListaCaminhaoParaCombo();
+                string json = HttpContext.Session.GetString("Logado");
+                ClienteViewModel cliente = new ClienteViewModel();
+
+                if (json == string.Empty || json == null)
+                    cliente.Id = 1;
+                else
+                    cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                ViewBag.ClienteID = cliente.Id;
+
                 if (model == null)
                     return RedirectToAction(NomeViewIndex);
                 else
@@ -136,6 +163,33 @@ namespace CloudScales.Controllers
             {
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
+        }
+        private void PreparaListaEquipamentosParaCombo()
+        {
+            EquipamentoDAO dao = new EquipamentoDAO();
+            var equipamentos = dao.ListaEquipamento();
+            List<SelectListItem> listaEquip = new List<SelectListItem>();
+            listaEquip.Add(new SelectListItem("Selecione a Balança...", "0"));
+            foreach (var equip in equipamentos)
+            {
+                SelectListItem item = new SelectListItem(equip.Id.ToString(), equip.Id.ToString());
+                listaEquip.Add(item);
+            }
+            ViewBag.Equipamentos = listaEquip;
+        }
+
+        private void PreparaListaCaminhaoParaCombo()
+        {
+            CaminhaoDAO dao = new CaminhaoDAO();
+            var caminhoes = dao.ListaCaminhao();
+            List<SelectListItem> lista = new List<SelectListItem>();
+            lista.Add(new SelectListItem("Selecione o caminhão...", "0"));
+            foreach (var caminhao in caminhoes)
+            {
+                SelectListItem item = new SelectListItem(caminhao.Placa, caminhao.Id.ToString());
+                lista.Add(item);
+            }
+            ViewBag.Caminhoes = lista;
         }
     }
 }

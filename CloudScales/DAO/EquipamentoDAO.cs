@@ -42,5 +42,14 @@ namespace CloudScales.DAO
         {
             Tabela = "Equipamento";
         }
+
+        public List<EquipamentoViewModel> ListaEquipamento()
+        {
+            List<EquipamentoViewModel> lista = new List<EquipamentoViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemEquipamento", null);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
     }
 }
