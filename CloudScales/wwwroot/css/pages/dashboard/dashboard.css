@@ -1,0 +1,59 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+        "sidenav header"
+        "sidenav main"
+        "sidenav footer";
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidenav {
+    grid-area: sidenav;
+    background-color: #002e6c;
+    color: white;
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+    grid-area: sidenav;
+}
+
+.sidenav__list {
+    padding: 0;
+    list-style-type: none;
+}
+
+.sidenav__list-item {
+    padding: 20px 20px 20px 40px;
+    color: #ddd;
+}
+
+.sidenav__list-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.main {
+    grid-area: main;
+    background-color: #d8d8d8;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+.header, .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    background-color: #0044a0;
+    color: white;
+}

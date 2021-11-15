@@ -64,6 +64,7 @@ namespace CloudScales.Controllers
 
                 ViewBag.ClienteID = cliente.Id;
                 ViewBag.Operacao = "I";
+                ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
                 PreparaListaEquipamentosParaCombo();
@@ -118,8 +119,11 @@ namespace CloudScales.Controllers
         {
             ModelState.Clear();
         }
-        public IActionResult Edit(int id)
+        public IActionResult Edit()
         {
+            string json = HttpContext.Session.GetString("Logado");
+            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
+
             try
             {
                 ViewBag.Operacao = "A";

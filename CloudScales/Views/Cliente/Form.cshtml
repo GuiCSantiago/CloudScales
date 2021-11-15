@@ -2,6 +2,12 @@
 @{
     Layout = "~/Views/Shared/_LayoutSemHeader.cshtml";
     ViewData["Title"] = "Cadastro";
+
+    string tipoCadastro = "";
+    if (ViewBag.Operacao == "A")
+        tipoCadastro = "Salvar";
+    else
+        tipoCadastro = "Cadastrar";
 }
 <link rel="stylesheet" href="~/css/pages/login/login.css" />
 <div class="login-main row m-0">
@@ -35,7 +41,7 @@
             </div>
 
             <div class="w-100 mt-3" style="display: flex; justify-content: space-between; align-items: center">
-                <input type="submit" value="Cadastrar" class="btn btn-success" />
+                <input type="submit" value="@tipoCadastro" class="btn btn-success" />
                 <a class="btn btn-outline-warning font-weight-bold" href="/">Login</a>
             </div>
         </form>
