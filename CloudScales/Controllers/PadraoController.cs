@@ -1,4 +1,5 @@
 ﻿using CloudScales.DAO;
+using CloudScales.Models.Exceptions;
 using CloudScales.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using MVCJogos.DAO;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -99,6 +101,13 @@ namespace CloudScales.Controllers
                         DAO.Update(model, Operacao);
                     return RedirectToAction("Index", "Home");
                 }
+            }
+            catch (SqlConcurrencyException erro)
+            {
+                ViewBag.Operacao = Operacao;
+                PreencheDadosParaView(Operacao, model);
+                ViewBag.Erro = erro.Message;
+                return View(NomeViewForm, model);
             }
             catch (Exception erro)
             {

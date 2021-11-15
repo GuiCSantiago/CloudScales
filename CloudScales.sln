@@ -7,16 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudScales", "CloudScales\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CloudScalesDB", "CloudScalesDB", "{2B9EA2C6-F855-4679-9A6F-9BF88550C172}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Desktop\CloudScales DB\Banco de dados.sql = ..\..\..\..\Desktop\CloudScales DB\Banco de dados.sql
-		..\..\..\..\Desktop\CloudScales DB\CloudScalesDB.sql = ..\..\..\..\Desktop\CloudScales DB\CloudScalesDB.sql
-		..\..\..\..\Desktop\CloudScales DB\Function.sql = ..\..\..\..\Desktop\CloudScales DB\Function.sql
-		..\..\..\..\Desktop\CloudScales DB\ProcedureCaminhao.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCaminhao.sql
-		..\..\..\..\Desktop\CloudScales DB\ProcedureCelula.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCelula.sql
-		..\..\..\..\Desktop\CloudScales DB\ProcedureCliente.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureCliente.sql
-		..\..\..\..\Desktop\CloudScales DB\ProcedureEquipamento.sql = ..\..\..\..\Desktop\CloudScales DB\ProcedureEquipamento.sql
-		..\..\..\..\Desktop\CloudScales DB\ProceduresPadrao.sql = ..\..\..\..\Desktop\CloudScales DB\ProceduresPadrao.sql
-		..\..\..\..\Desktop\CloudScales DB\Triggers - Cursor.sql = ..\..\..\..\Desktop\CloudScales DB\Triggers - Cursor.sql
-		..\..\..\..\Desktop\CloudScales DB\Views.sql = ..\..\..\..\Desktop\CloudScales DB\Views.sql
+		..\..\..\CloudScales DB\Banco de dados.sql = ..\..\..\CloudScales DB\Banco de dados.sql
+		..\..\..\CloudScales DB\CloudScalesDB.sql = ..\..\..\CloudScales DB\CloudScalesDB.sql
+		..\..\..\CloudScales DB\Function.sql = ..\..\..\CloudScales DB\Function.sql
+		..\..\..\CloudScales DB\ProcedureCaminhao.sql = ..\..\..\CloudScales DB\ProcedureCaminhao.sql
+		..\..\..\CloudScales DB\ProcedureCelula.sql = ..\..\..\CloudScales DB\ProcedureCelula.sql
+		..\..\..\CloudScales DB\ProcedureCliente.sql = ..\..\..\CloudScales DB\ProcedureCliente.sql
+		..\..\..\CloudScales DB\ProcedureEquipamento.sql = ..\..\..\CloudScales DB\ProcedureEquipamento.sql
+		..\..\..\CloudScales DB\ProceduresPadrao.sql = ..\..\..\CloudScales DB\ProceduresPadrao.sql
+		..\..\..\CloudScales DB\Triggers - Cursor.sql = ..\..\..\CloudScales DB\Triggers - Cursor.sql
+		..\..\..\CloudScales DB\Views.sql = ..\..\..\CloudScales DB\Views.sql
 	EndProjectSection
 EndProject
 Global
