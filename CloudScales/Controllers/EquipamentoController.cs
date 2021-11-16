@@ -24,7 +24,23 @@ namespace CloudScales.Controllers
             if (model.QtdBalanca <= 0)
                 ModelState.AddModelError("QtdBalanca", "Preencha a quantidade!");
         }
+        public IActionResult ObtemDadosConsultaAvancadaEquipamento(string caminhaoID, string qtdbalanca)
+        {
+            try
+            {
+                EquipamentoDAO dao = new EquipamentoDAO();
+                if (string.IsNullOrEmpty(caminhaoID))
+                    caminhaoID = "";
+                if (string.IsNullOrEmpty(qtdbalanca))
+                    qtdbalanca = "";
+                var lista = dao.ConsultaAvancadaEquipamento(caminhaoID, qtdbalanca);
+                return PartialView("pvGridEquipamento", lista);
+            }
+            catch (Exception erro)
+            {
+                return Json(new { erro = true, msg = erro.Message });
+            }
+        }
 
-        
     }
 }

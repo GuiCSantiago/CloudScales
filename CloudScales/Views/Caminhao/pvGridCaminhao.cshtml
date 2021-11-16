@@ -1,0 +1,27 @@
+﻿@model List<CaminhaoViewModel>
+
+        <table class="table table-responsive text-white">
+            <tr>
+                <th>Placa do veículo</th>
+                <th>Placa da carreta</th>
+            </tr>
+            @if (Model.Count() > 0)
+            {
+                @foreach (var caminhao in Model)
+                {
+                    <tr>
+                        <td>@caminhao.Placa</td>
+                        <td>@caminhao.Carreta</td>
+                    </tr>
+                }
+            }
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td>
+                        Nenhum registro encontrado.
+                    </td>
+                </tr>
+            }
+
+        </table>

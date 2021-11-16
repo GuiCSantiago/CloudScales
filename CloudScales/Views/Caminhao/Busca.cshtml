@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Consulta avançada de Jogos</legend>
+    <div class="row">
+        <div class="col-lg-4">
+            Placa<br />
+            <input type="text" id="Placa" class="form-control" />
+        </div>
+        <div class="col-lg-3">
+            Carreta <br />
+            <input type="text" id="Carreta" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar" onclick="aplicaFiltroConsultaAvancada()" />
+        </div>
+    </div>
+</fieldset>
+
+<div id="resultadoConsulta" class="table-responsive">
+</div>

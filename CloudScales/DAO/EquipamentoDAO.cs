@@ -51,5 +51,20 @@ namespace CloudScales.DAO
                 lista.Add(MontaModel(registro));
             return lista;
         }
+
+        public List<EquipamentoViewModel> ConsultaAvancadaEquipamento(string caminhaoID, string qtdBalanca)
+        {
+            var p = new SqlParameter[]
+            {
+            new SqlParameter("caminhaoID", caminhaoID),
+            new SqlParameter("qtdBalanca", qtdBalanca)
+            };
+            List<EquipamentoViewModel> lista = new List<EquipamentoViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaEquipamento", p);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+
+        }
     }
 }

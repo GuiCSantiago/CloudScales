@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Consulta avançada de Celula</legend>
+    <div class="row">
+        <div class="col-lg-4">
+            EquipamentoID<br />
+            <input type="number" id="EquipamentoID" class="form-control" />
+        </div>
+        <div class="col-lg-3">
+            Peso <br />
+            <input type="number" id="Peso" class="form-control" />
+        </div>
+        <div class="col-lg-3">
+            Posição <br />
+            <input type="number" id="Posicao" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <br />
+            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar" onclick="aplicaFiltroConsultaAvancadaCelula()" />
+        </div>
+    </div>
+</fieldset>
+
+<div id="resultadoConsultaCelula" class="table-responsive">
+</div>

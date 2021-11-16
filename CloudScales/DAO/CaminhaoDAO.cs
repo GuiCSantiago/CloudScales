@@ -55,52 +55,19 @@ namespace CloudScales.DAO
                 lista.Add(MontaModel(registro));
             return lista;
         }
-
-        public List<CaminhaoViewModel> FiltrarConteudo(CaminhaoViewModel filter)
+        
+        public List<CaminhaoViewModel> ConsultaAvancadaCaminhao(string placa, string carreta)
         {
-            var caminhoesFiltrados = new List<CaminhaoViewModel>();
-
-            StringBuilder query = new StringBuilder();
-
-            query.Append($@"
-                            select 
-                                 *
-                            from
-	                            dbo.Caminhao
-                            where
-                                 1=1 ");
-
-            if (!string.IsNullOrEmpty(filter.Placa))
-                query.Append($" and Placa like '%{filter.Placa}%' ");
-
-            if (!string.IsNullOrEmpty(filter.Carreta))
-                query.Append($" and Carreta like '%{filter.Carreta}%' ");
-
-            using (SqlConnection conexao = ConexaoBD.GetConexao())
+            var p = new SqlParameter[]
             {
-                using (SqlCommand comando = new SqlCommand(query.ToString(), conexao))
-                {
-                    SqlDataReader dataReader = comando.ExecuteReader();
-
-                    while (dataReader.Read())
-                    {
-                        CaminhaoViewModel caminhao = new CaminhaoViewModel
-                        {
-                            Id = Convert.ToInt32(dataReader["ID"]),
-                            ClienteID = Convert.ToInt32(dataReader["ClienteID"]),
-                            Placa = Convert.ToString(dataReader["Placa"]),
-                            Carreta = Convert.ToString(dataReader["Carreta"])
-                        };
-
-                        caminhoesFiltrados.Add(caminhao);
-                    }
-
-                }
-
-                conexao.Close();
-            }
-
-            return caminhoesFiltrados;
+            new SqlParameter("placa", placa),
+            new SqlParameter("carreta", carreta)
+            };
+            List<CaminhaoViewModel> lista = new List<CaminhaoViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaCaminhao", p);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
 
         }
     }

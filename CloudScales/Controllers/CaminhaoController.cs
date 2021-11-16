@@ -23,5 +23,21 @@ namespace CloudScales.Controllers
             if (string.IsNullOrEmpty(model.Carreta))
                 ModelState.AddModelError("Placa", "Preencha a placa da carreta.");
         }
+        public IActionResult ObtemDadosConsultaAvancada(string placa, string carreta)
+        {
+            try { 
+                CaminhaoDAO dao = new CaminhaoDAO();
+                if (string.IsNullOrEmpty(placa))
+                    placa = "";
+                if (string.IsNullOrEmpty(carreta))
+                    carreta = "";        
+                var lista = dao.ConsultaAvancadaCaminhao(placa, carreta);
+                return PartialView("pvGridCaminhao", lista);
+            }
+            catch (Exception erro) 
+            {
+                return Json(new { erro = true, msg = erro.Message });
+            }
+        }
     }
 }

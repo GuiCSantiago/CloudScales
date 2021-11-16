@@ -1,4 +1,54 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function aplicaFiltroConsultaAvancada() {
+    var vPlaca = document.getElementById('Placa').value;
+    var vCarreta = document.getElementById('Carreta').value;
 
-// Write your JavaScript code.
+    $.ajax({
+        url: "/caminhao/ObtemDadosConsultaAvancada",
+        data: { Placa: vPlaca, Carreta: vCarreta },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById('resultadoConsulta').innerHTML = dados;
+            }
+        },
+    });
+}
+
+function aplicaFiltroConsultaAvancadaCelula() {
+    var vEquipamentoID = document.getElementById('EquipamentoID').value;
+    var vPeso = document.getElementById('Peso').value;
+    var vPosicao = document.getElementById('Posicao').value;
+
+    $.ajax({
+        url: "/celula/ObtemDadosConsultaAvancadaCelula",
+        data: { EquipamentoID: vEquipamentoID, Peso: vPeso, Posicao: vPosicao },
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById('resultadoConsultaCelula').innerHTML = dados;
+            }
+        },
+    });
+}
+
+function aplicaFiltroConsultaAvancadaEquipamento() {
+    var vCaminhaoID = document.getElementById('CaminhaoID').value;
+    var vQtdBalanca = document.getElementById('QtdBalanca').value;
+
+    $.ajax({
+        url: "/equipamento/ObtemDadosConsultaAvancadaEquipamento",
+        data: { CaminhaoID: vCaminhaoID, QtdBalanca: vQtdBalanca},
+        success: function (dados) {
+            if (dados.erro != undefined) {
+                alert(dados.msg);
+            }
+            else {
+                document.getElementById('resultadoConsultaEquipamento').innerHTML = dados;
+            }
+        },
+    });
+}

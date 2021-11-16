@@ -22,6 +22,7 @@ namespace CloudScales.Controllers
         protected string NomeViewIndex { get; set; } = "index";
         protected string NomeViewForm { get; set; } = "form";
         protected bool ExigeAutenticacao { get; set; } = true;
+        protected string NomeViewBusca { get; set; } = "busca";
        
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -193,5 +194,18 @@ namespace CloudScales.Controllers
             }
             ViewBag.Caminhoes = lista;
         }
+
+        public IActionResult ExibeConsultaAvancada() 
+        {
+            try 
+            {
+               return View(NomeViewBusca); 
+            }
+            catch (Exception erro) 
+            {
+                return View("Error", new ErrorViewModel(erro.Message)); 
+            } 
+        }
+
     }
 }
