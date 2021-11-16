@@ -22,8 +22,8 @@
                         <td>@caminhao.Placa</td>
                         <td>@caminhao.Carreta</td>
                         <td>
-                            <a href="/caminhao/Edit?id=@caminhao.Id"><img src="~/img/edit.png" style="width: 35px;"/></a>
-                            <a href="javascript:apagarCaminhao(@caminhao.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+                            <a href="/caminhao/Edit?id=@caminhao.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
+                            <a onclick="deleteFunction(@caminhao.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
                             <a href="/Dashboard?id=@caminhao.Id"><img src="~/img/dash.png" style="width: 35px;" /></a>
                         </td>
                     </tr>
@@ -44,8 +44,17 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    function apagarCaminhao(id) {
-        if (confirm('Todos os registros deste caminhão serão excluídos! Confirma exclusão?'))
-            location.href = 'caminhao/Delete?id=' + id;
+    function deleteFunction(id) {
+        swal({
+            title: 'Excluir Caminhão?',
+            text: "Todos os dados desse caminhão serão excluídos!",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                location.href = 'caminhao/Delete?id=' + id;
+            }
+        });
     }
 </script>

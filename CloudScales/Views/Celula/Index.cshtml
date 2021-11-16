@@ -21,7 +21,7 @@
             <td>@celula.Posicao</td>
             <td>
                 <a href="/celula/Edit?id=@celula.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
-                <a href="javascript:apagarCelula(@celula.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+                <a onclick="deleteFunction(@celula.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
             </td>
         </tr>
     }
@@ -35,9 +35,20 @@
     }
 
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    function apagarCelula(id) {
-        if (confirm('Todos os registros desta célula serão excluídos! Confirma exclusão?'))
-            location.href = 'celula/Delete?id=' + id;
+    function deleteFunction(id) {
+        swal({
+            title: 'Excluir Célula?',
+            text: "Todos os dados dessa célula serão excluídos!",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                location.href = 'celula/Delete?id=' + id;
+            }
+        });
     }
 </script>

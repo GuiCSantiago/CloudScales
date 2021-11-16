@@ -18,7 +18,7 @@
             <td>@equip.QtdBalanca</td>
             <td>
                 <a href="/equipamento/Edit?id=@equip.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
-                <a href="javascript:apagarEquipamento(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+                <a onclick="deleteFunction(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
             </td>
         </tr>
     }
@@ -31,28 +31,20 @@
         </tr>
     }
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
-    function apagarEquipamento(id) {
-        if (confirm('Todos os registros deste equipamento serão excluídos! Confirma exclusão?'))
-            location.href = 'equipamento/Delete?id=' + id;
+    function deleteFunction(id){
+        swal({
+            title: 'Excluir Equipamento?',
+            text: "Todos os dados desse equipamento serão excluídos!",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                location.href = 'equipamento/Delete?id=' + id;
+            }
+        });
     }
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        if ('@Html.Raw(ViewBag.Erro)'.length == 0) {
-            swal({
-                title: "Sucesso",
-                text: "@Html.Raw(ViewBag.Sucesso)",
-                icon: "success",
-                button: "OK",
-            });
-        } else {
-            swal({
-                title: "Error",
-                text: "@Html.Raw(ViewBag.Erro)",
-                icon: "error",
-                button: "OK",
-            });
-        }
-    })
 </script>
