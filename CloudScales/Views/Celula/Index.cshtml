@@ -20,8 +20,8 @@
             <td>@celula.Peso</td>
             <td>@celula.Posicao</td>
             <td>
-                <a class="btn btn-outline-warning" href="/celula/Edit?id=@celula.Id">Editar</a>
-                <a class="btn btn-outline-danger" href="javascript:apagarCelula(@celula.Id)">Apagar</a>
+                <a href="/celula/Edit?id=@celula.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
+                <a href="javascript:apagarCelula(@celula.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
             </td>
         </tr>
     }

@@ -22,9 +22,9 @@
                         <td>@caminhao.Placa</td>
                         <td>@caminhao.Carreta</td>
                         <td>
-                            <a class="btn btn-outline-warning" href="/caminhao/Edit?id=@caminhao.Id">Editar</a>
-                            <a class="btn btn-outline-danger" href="javascript:apagarCaminhao(@caminhao.Id)">Apagar</a>
-                            <a class="btn btn-outline-info" href="/Dashboard?id=@caminhao.Id">Dashboard</a>
+                            <a href="/caminhao/Edit?id=@caminhao.Id"><img src="~/img/edit.png" style="width: 35px;"/></a>
+                            <a href="javascript:apagarCaminhao(@caminhao.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+                            <a href="/Dashboard?id=@caminhao.Id"><img src="~/img/dash.png" style="width: 35px;" /></a>
                         </td>
                     </tr>
                 }
