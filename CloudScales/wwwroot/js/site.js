@@ -7,7 +7,12 @@
         data: { Placa: vPlaca, Carreta: vCarreta },
         success: function (dados) {
             if (dados.erro != undefined) {
-                alert(dados.msg);
+                swal({
+                    title: "Erro",
+                    text: dados.msg,
+                    icon: "error",
+                    button: "OK",
+                });
             }
             else {
                 document.getElementById('resultadoConsulta').innerHTML = dados;
@@ -26,7 +31,12 @@ function aplicaFiltroConsultaAvancadaCelula() {
         data: { EquipamentoID: vEquipamentoID, Peso: vPeso, Posicao: vPosicao },
         success: function (dados) {
             if (dados.erro != undefined) {
-                alert(dados.msg);
+                swal({
+                    title: "Erro",
+                    text: dados.msg,
+                    icon: "error",
+                    button: "OK",
+                });
             }
             else {
                 document.getElementById('resultadoConsultaCelula').innerHTML = dados;
@@ -44,7 +54,12 @@ function aplicaFiltroConsultaAvancadaEquipamento() {
         data: { CaminhaoID: vCaminhaoID, QtdBalanca: vQtdBalanca},
         success: function (dados) {
             if (dados.erro != undefined) {
-                alert(dados.msg);
+                swal({
+                    title: "Erro",
+                    text: dados.msg,
+                    icon: "error",
+                    button: "OK",
+                });
             }
             else {
                 document.getElementById('resultadoConsultaEquipamento').innerHTML = dados;

@@ -2,24 +2,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<fieldset id="areaFiltro" class="form-group">
-    <legend>Consulta avançada de Celula</legend>
+<fieldset id="areaFiltro" class="form-group border-0 px-0 mx-0">
+    <legend class="text-white">Buscar Célula</legend>
     <div class="row">
         <div class="col-lg-4">
-            EquipamentoID<br />
+            <label class="font-weight-bold text-white">Equipamento</label>
             <input type="number" id="EquipamentoID" class="form-control" />
         </div>
         <div class="col-lg-3">
-            Peso <br />
+            <label class="font-weight-bold text-white">Peso</label>
             <input type="number" id="Peso" class="form-control" />
         </div>
         <div class="col-lg-3">
-            Posição <br />
+            <label class="font-weight-bold text-white">Posição</label>
             <input type="number" id="Posicao" class="form-control" />
         </div>
-        <div class="col-lg-1">
-            <br />
-            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar" onclick="aplicaFiltroConsultaAvancadaCelula()" />
+        <div class="col-lg-1 position-relative">
+            <input type="button" id="btnFiltro" class="btn btn-light position-absolute" style="bottom: 0; right: 0" value="Buscar" onclick="aplicaFiltroConsultaAvancadaCelula()" />
         </div>
     </div>
 </fieldset>

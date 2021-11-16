@@ -23,7 +23,7 @@ namespace CloudScales.Controllers
         protected string NomeViewForm { get; set; } = "form";
         protected bool ExigeAutenticacao { get; set; } = true;
         protected string NomeViewBusca { get; set; } = "busca";
-       
+
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (ExigeAutenticacao && !HelperControllers.VerificaUserLogado(HttpContext.Session))
@@ -58,17 +58,17 @@ namespace CloudScales.Controllers
                 string json = HttpContext.Session.GetString("Logado");
                 ClienteViewModel cliente = new ClienteViewModel();
 
-                if(json == string.Empty || json == null)
+                if (json == string.Empty || json == null)
                     cliente.Id = 1;
                 else
                 {
                     cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
                     ViewBag.NomeUser = cliente.Nome;
-                }                    
+                }
 
                 ViewBag.ClienteID = cliente.Id;
                 ViewBag.Operacao = "I";
-                
+
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
                 PreparaListaEquipamentosParaCombo();
@@ -101,10 +101,20 @@ namespace CloudScales.Controllers
                 else
                 {
                     if (Operacao == "I")
+                    {
                         DAO.Insert(model, Operacao);
+                        ViewBag.Sucesso = GetModelName(model) + " cadastrado com sucesso!";
+                    }
                     else
+                    {
                         DAO.Update(model, Operacao);
-                    return RedirectToAction("Index", "Home");
+                        ViewBag.Sucesso = GetModelName(model) + " foi atualizado com sucesso!";
+                    }
+
+                    if (model.GetType().Name == "ClienteViewModel")
+                        return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("Index");
                 }
             }
             catch (SqlConcurrencyException erro)
@@ -195,16 +205,46 @@ namespace CloudScales.Controllers
             ViewBag.Caminhoes = lista;
         }
 
-        public IActionResult ExibeConsultaAvancada() 
+        public IActionResult ExibeConsultaAvancada()
         {
-            try 
+            try
             {
-               return View(NomeViewBusca); 
+                string json = HttpContext.Session.GetString("Logado");
+                var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                ViewBag.NomeUser = model.Nome;
+
+                return View(NomeViewBusca);
             }
-            catch (Exception erro) 
+            catch (Exception erro)
             {
-                return View("Error", new ErrorViewModel(erro.Message)); 
-            } 
+                return View("Error", new ErrorViewModel(erro.Message));
+            }
+        }
+
+        public string GetModelName(T model)
+        {
+            string modelName = "";
+
+            switch (model.GetType().Name)
+            {
+                case "CaminhaoViewModel":
+                    modelName = "Caminhão";
+                    break;
+                case "CelulaViewModel":
+                    modelName = "Célula";
+                    break;
+                case "ClienteViewModel":
+                    modelName = "Cliente";
+                    break;
+                case "EquipamentoViewModel":
+                    modelName = "Equipamento";
+                    break;
+                default:
+                    modelName = "";
+                    break;
+            }
+
+            return modelName;
         }
 
     }

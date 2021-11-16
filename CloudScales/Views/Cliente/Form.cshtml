@@ -50,10 +50,15 @@
 
 @{ if (!string.IsNullOrEmpty(ViewBag.Erro))
     {
-    <script type="text/javascript">
+        <script type="text/javascript">
         window.onload = function () {
-            alert("@(ViewBag.Erro)");
+            swal({
+                title: "Erro",
+                text: "@Html.Raw(ViewBag.Erro)",
+                icon: "error",
+                button: "OK",
+            });
             };
-    </script>
+        </script>
     }
 }

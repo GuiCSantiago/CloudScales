@@ -21,7 +21,7 @@
                 <a href="javascript:apagarEquipamento(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
             </td>
         </tr>
-    } 
+    }
     @if (Model.Count() == 0)
     {
         <tr>
@@ -36,4 +36,23 @@
         if (confirm('Todos os registros deste equipamento serão excluídos! Confirma exclusão?'))
             location.href = 'equipamento/Delete?id=' + id;
     }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ('@Html.Raw(ViewBag.Erro)'.length == 0) {
+            swal({
+                title: "Sucesso",
+                text: "@Html.Raw(ViewBag.Sucesso)",
+                icon: "success",
+                button: "OK",
+            });
+        } else {
+            swal({
+                title: "Error",
+                text: "@Html.Raw(ViewBag.Erro)",
+                icon: "error",
+                button: "OK",
+            });
+        }
+    })
 </script>

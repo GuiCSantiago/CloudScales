@@ -5,12 +5,17 @@
     <tr>
         <th>CaminhaoID</th>
         <th>QtdBalanca</th>
+        <th>Ações</th>
     </tr>
     @foreach (var equip in Model)
     {
         <tr>
             <td>@equip.CaminhaoID</td>
             <td>@equip.QtdBalanca</td>
+            <td>
+                <a href="/equipamento/Edit?id=@equip.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
+                <a href="javascript:apagarEquipamento(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+            </td>
         </tr>
     }
     @if (Model.Count() == 0)

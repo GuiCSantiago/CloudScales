@@ -2,20 +2,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<fieldset id="areaFiltro" class="form-group">
-    <legend>Consulta avançada de Jogos</legend>
+<fieldset id="areaFiltro" class="form-group border-0 px-0 mx-0">
+    <legend class="text-white">Buscar Caminhão</legend>
     <div class="row">
         <div class="col-lg-4">
-            Placa<br />
+            <label class="font-weight-bold text-white">Placa</label>
             <input type="text" id="Placa" class="form-control" />
         </div>
         <div class="col-lg-3">
-            Carreta <br />
+            <label class="font-weight-bold text-white">Carreta</label>
             <input type="text" id="Carreta" class="form-control" />
         </div>
-        <div class="col-lg-1">
-            <br />
-            <input type="button" id="btnFiltro" class="btn btn-success" value="Aplicar" onclick="aplicaFiltroConsultaAvancada()" />
+        <div class="col-lg-1 position-relative">
+            <input type="button" id="btnFiltro" class="btn btn-light position-absolute" style="bottom: 0; right: 0" value="Buscar" onclick="aplicaFiltroConsultaAvancada()" />
         </div>
     </div>
 </fieldset>

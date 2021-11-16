@@ -28,3 +28,18 @@
         </form>
     </div>
 </div>
+
+@{ if (!string.IsNullOrEmpty(ViewBag.Sucesso))
+    {
+        <script type="text/javascript">
+        window.onload = function () {
+            swal({
+                title: "Sucesso",
+                text: "@Html.Raw(ViewBag.Sucesso)",
+                icon: "success",
+                button: "OK",
+            });
+            };
+        </script>
+    }
+}

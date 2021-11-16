@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - CloudScales</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="background-color: #004AAD;">
     <header class="custom-header">
@@ -68,7 +69,7 @@
                             </div>
                             <div class="row align-items-center">
                                 <div class="ml-auto logoff">
-                                    <p>Bem vindo(a) <a href="cliente/edit/">@ViewBag.NomeUser</a></p>
+                                    <p>Bem vindo(a) <a asp-area="" asp-controller="Cliente" asp-action="Edit">@ViewBag.NomeUser</a></p>
                                     <a class="btn btn-outline-danger ml-2" asp-area="" asp-controller="Login" asp-action="LogOff">Sair</a>
                                 </div>
                             </div>

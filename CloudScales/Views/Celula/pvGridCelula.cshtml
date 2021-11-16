@@ -5,6 +5,7 @@
         <th>EquipamentoID</th>
         <th>Peso</th>
         <th>Posicao</th>
+        <th>Ações</th>
     </tr>
     @foreach (var celula in Model)
     {
@@ -12,6 +13,10 @@
             <td>@celula.EquipamentoID</td>
             <td>@celula.Peso</td>
             <td>@celula.Posicao</td>
+            <td>
+                <a href="/celula/Edit?id=@celula.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
+                <a href="javascript:apagarCelula(@celula.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+            </td>
         </tr>
     }
     @if (Model.Count() == 0)
