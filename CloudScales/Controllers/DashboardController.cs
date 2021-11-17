@@ -30,9 +30,29 @@ namespace CloudScales.Controllers
             return View(await requisicaoDAO.Requisicao());
         }
 
-        public async Task<RequisicaoViewModel.Root> AtualizaEquipamento()
+        [HttpGet]
+        public async Task<IActionResult> AtualizaEquipamento()
         {
-            return await requisicaoDAO.Requisicao();
+            try
+            {
+                var response = await requisicaoDAO.Requisicao();
+
+                return Json(new
+                {
+                    dados = response,
+                    sucesso = true,
+                    tipo = true ? "sucesso" : "alerta",
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    mensagem = "Erro ao atualizar equipamento = " + ex.Message,
+                    sucesso = false,
+                    tipo = "erro",
+                });
+            }
         }
     }
 }

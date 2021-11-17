@@ -7,44 +7,85 @@
 <div style="width: 100%; height: 100%">
     <canvas style="max-width: 100%; max-height: 100%" id="myChart"></canvas>
 
-    <a id="btn" asp-controller="Dashboard" asp-action="AtualizaEquipamento">Atualizar Células</a>
+    <button id="btn">Atualizar Células</button>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    setInterval
-    (
-        function () {
-            document.getElementById('btn').click()
-        },
-        10000
-    )
+@Html.Hidden("urlAtualizaEquipamento", Url.Action("AtualizaEquipamento", "Dashboard"))
 
-    const labels = [
-        'Teste'
-    ];
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script>
+    var pesoA = [];
+    var pesoB = [];
+
+    var labels = [];
+
+    var sinc1;
+    var sinc2 = 0;
+    var sinc;
+
+    var time = 10000;
+
+    $(document).ready(function () {
+        document.getElementById('btn').click();
+
+        sinc1 = sinc;
+
+        if (sinc1 > sinc2) {
+            myChart.update();
+
+            sinc2 = sinc1;
+        }
+    });
+
+    setInterval
+        (
+            function () {
+                document.getElementById('btn').click();            
+
+                sinc1 = sinc;
+
+                if (sinc1 > sinc2) {
+                    myChart.update();
+
+                    sinc2 = sinc1;
+                }
+                else {
+                    swal({
+                        title: 'Balança desconectada',
+                        text: "Verifique a conexão e recarregue a página!",
+                        icon: 'warning',
+                        buttons: true,
+                        dangerMode: true,
+                    }).then(() => {
+                        return;
+                    });
+                }
+            }, time
+        )
 
     const data = {
         labels: labels,
         datasets: [
             {
                 label: 'Célula Frontal:',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [@Model.pesoA.value]
+                backgroundColor: 'rgb(0, 0, 246)',
+                borderColor: 'rgb(0, 0, 246)',
+                data: pesoA
             },
             {
                 label: 'Célula Traseira:',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [@Model.pesoB.value]
+                backgroundColor: 'rgb(2, 107, 3)',
+                borderColor: 'rgb(2, 107, 3)',
+                data: pesoB
             }
         ]
     };
 
     const config = {
-        type: 'bar',
+        type: 'line',
         data: data,
         options: {}
     };
@@ -53,4 +94,34 @@
         document.getElementById('myChart'),
         config
     );
+</script>
+<script>
+    function apiAtualizarEquip() {
+        var urlAtualizaEquip = $("#urlAtualizaEquipamento").val();
+        return $.ajax({
+            url: urlAtualizaEquip,
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            type: "GET",
+            async: true
+        });
+    }
+
+    var count = 0;
+
+    $('#btn').click(function () {
+        apiAtualizarEquip().done(function (retorno) {
+            if (retorno.sucesso) {
+                pesoA.push(retorno.dados.pesoA.value);
+                pesoB.push(retorno.dados.pesoB.value);
+                labels.push(count++);
+
+                sinc = retorno.dados.sinc.value;
+            }
+            else {
+                console.log('Erro');
+            }
+        })
+
+    })
 </script>
