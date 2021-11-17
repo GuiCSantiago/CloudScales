@@ -1,0 +1,56 @@
+﻿@model RequisicaoViewModel.Root
+@{
+    Layout = "~/Views/Shared/_LayoutDashBoard.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+<div style="width: 100%; height: 100%">
+    <canvas style="max-width: 100%; max-height: 100%" id="myChart"></canvas>
+
+    <a id="btn" asp-controller="Dashboard" asp-action="AtualizaEquipamento">Atualizar Células</a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    setInterval
+    (
+        function () {
+            document.getElementById('btn').click()
+        },
+        10000
+    )
+
+    const labels = [
+        'Teste'
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Célula Frontal:',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [@Model.pesoA.value]
+            },
+            {
+                label: 'Célula Traseira:',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [@Model.pesoB.value]
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {}
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>

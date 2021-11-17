@@ -1,12 +1,11 @@
 ﻿using CloudScales.Models.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MVCJogos.DAO
+namespace CloudScales.DAO
 {
     public abstract class PadraoDAO<T> where T : PadraoViewModel
     {
