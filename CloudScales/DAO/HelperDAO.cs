@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVCJogos.DAO
+namespace CloudScales.DAO
 {
     public static class HelperDAO
     {
