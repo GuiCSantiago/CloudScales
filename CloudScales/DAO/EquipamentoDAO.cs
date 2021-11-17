@@ -1,5 +1,4 @@
 ﻿using CloudScales.Models.ViewModels;
-using MVCJogos.DAO;
 using System;
 using System.Collections.Generic;
 using System.Data;

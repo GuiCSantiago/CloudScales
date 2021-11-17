@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using static RequisicaoViewModel;
 
 namespace CloudScales.Controllers
 {
@@ -26,12 +25,12 @@ namespace CloudScales.Controllers
             return View(caminhaoDAO.Consulta(id));
         }
 
-        public IActionResult Equipamento()
+        public async Task<IActionResult> Equipamento()
         {
-            return View(requisicaoDAO.Requisicao());
+            return View(await requisicaoDAO.Requisicao());
         }
 
-        public async Task<Root> AtualizaEquipamento()
+        public async Task<RequisicaoViewModel.Root> AtualizaEquipamento()
         {
             return await requisicaoDAO.Requisicao();
         }

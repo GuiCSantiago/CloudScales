@@ -4,10 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using static RequisicaoViewModel;
 
 namespace CloudScales.DAO
 {

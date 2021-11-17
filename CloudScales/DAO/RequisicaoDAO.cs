@@ -1,19 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using CloudScales.Models.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using static RequisicaoViewModel;
 
 namespace CloudScales.DAO
 {
     public class RequisicaoDAO 
     {
-        public async Task<Root> Requisicao()
-    {
+        public async Task<RequisicaoViewModel.Root> Requisicao()
+        {
             //Requisição GET
             string url = "http://18.222.178.90:1026/v2/entities?id=urn:ngsi-ld:entity:004";
             HttpClient client = new HttpClient();
@@ -25,11 +23,12 @@ namespace CloudScales.DAO
             //Tratamento da resposta
             var response = await client.GetAsync(client.BaseAddress);
             var status = response.StatusCode.GetHashCode();
-            Console.WriteLine(response.StatusCode.GetTypeCode());
-            Console.WriteLine(status);
+            //Console.WriteLine(response.StatusCode.GetTypeCode());
+            //Console.WriteLine(status);
             string content = await response.Content.ReadAsStringAsync();
-            Root resposta = JsonConvert.DeserializeObject<Root>(content);
-            return resposta;
+            List<RequisicaoViewModel.Root> resposta = JsonConvert.DeserializeObject<List<RequisicaoViewModel.Root>>(content);
+            Console.WriteLine(resposta);
+            return resposta.First();
 
             /*
             //Salvando resposta em listas do modelo Root
