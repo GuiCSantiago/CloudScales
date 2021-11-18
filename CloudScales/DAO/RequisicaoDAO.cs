@@ -40,14 +40,24 @@ namespace CloudScales.DAO
                 List<CelulaViewModel> celulas = celulaDAO.ConsultaPorEquipamento(equipamento.Id);
 
                 RequisicaoViewModel.Root root = new RequisicaoViewModel.Root();
+                RequisicaoViewModel.Metadata metadata = new RequisicaoViewModel.Metadata();
+
+                root.AtrasPesoMaior = new RequisicaoViewModel.AtrasPesoMaior() { type = "Boolean", value = false ,metadata = metadata }; 
+                root.idA = new RequisicaoViewModel.IdA() { type = "Number", metadata = metadata };
+                root.idB = new RequisicaoViewModel.IdB() { type = "Number", metadata = metadata }; 
+                root.pesoA = new RequisicaoViewModel.PesoA() { type = "Number", metadata = metadata };
+                root.pesoB = new RequisicaoViewModel.PesoB() { type = "Number", metadata = metadata };
+                root.sinc = new RequisicaoViewModel.Sinc() { type = "Number", metadata = metadata };
 
                 root.id = "urn:ngsi-ld:entity:" + equipamento.Id;
+
+                root.type = "iot";
 
                 root.idA.value = celulas[0].Id;
 
                 root.idB.value = celulas[1].Id;
 
-                string url = "http://18.222.178.90:1026/v2/entities?options=keyValues";
+                string url = "http://18.222.178.90:1026/v2/entities";
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
