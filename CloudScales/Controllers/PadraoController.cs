@@ -133,23 +133,26 @@ namespace CloudScales.Controllers
         {
             ModelState.Clear();
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
             string json = HttpContext.Session.GetString("Logado");
-            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
 
             try
             {
                 ViewBag.Operacao = "A";
                 var model = DAO.Consulta(id);
-                PreparaListaEquipamentosParaCombo(id);
-                PreparaListaCaminhaoParaCombo(id);
+                
                 ClienteViewModel cliente = new ClienteViewModel();
 
                 if (json == string.Empty || json == null)
                     cliente.Id = 1;
                 else
+                {
                     cliente = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                    PreparaListaEquipamentosParaCombo(cliente.Id);
+                    PreparaListaCaminhaoParaCombo(cliente.Id);
+                }
+                    
                 ViewBag.ClienteID = cliente.Id;
 
                 if (model == null)
