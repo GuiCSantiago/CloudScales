@@ -28,14 +28,16 @@ namespace CloudScales.Controllers
         public IActionResult ObtemDadosConsultaAvancada(string placa, string carreta)
         {
             try {
+                int id = 1;
                 string json = HttpContext.Session.GetString("Logado");
-                var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                if (json != string.Empty || json != null)
+                    id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
                 CaminhaoDAO dao = new CaminhaoDAO();
                 if (string.IsNullOrEmpty(placa))
                     placa = "";
                 if (string.IsNullOrEmpty(carreta))
                     carreta = "";        
-                var lista = dao.ConsultaAvancadaCaminhao(placa, carreta, model.Id);
+                var lista = dao.ConsultaAvancadaCaminhao(placa, carreta, id);
                 return PartialView("pvGridCaminhao", lista);
             }
             catch (Exception erro) 

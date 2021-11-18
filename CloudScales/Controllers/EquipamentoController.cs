@@ -31,14 +31,16 @@ namespace CloudScales.Controllers
         {
             try
             {
+                int id = 1;
                 string json = HttpContext.Session.GetString("Logado");
-                var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
+                if (json != string.Empty || json != null)
+                    id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
                 EquipamentoDAO dao = new EquipamentoDAO();
                 if (string.IsNullOrEmpty(caminhaoID))
                     caminhaoID = "";
                 if (string.IsNullOrEmpty(qtdbalanca))
                     qtdbalanca = "";
-                var lista = dao.ConsultaAvancadaEquipamento(caminhaoID, qtdbalanca, model.Id);
+                var lista = dao.ConsultaAvancadaEquipamento(caminhaoID, qtdbalanca, id);
                 return PartialView("pvGridEquipamento", lista);
             }
             catch (Exception erro)

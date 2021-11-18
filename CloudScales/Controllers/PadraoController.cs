@@ -70,8 +70,9 @@ namespace CloudScales.Controllers
 
                 T model = Activator.CreateInstance(typeof(T)) as T;
                 PreencheDadosParaView("I", model);
-                PreparaListaEquipamentosParaCombo();
-                PreparaListaCaminhaoParaCombo();
+                if(json != string.Empty || json != null)
+                PreparaListaEquipamentosParaCombo(cliente.Id);
+                PreparaListaCaminhaoParaCombo(cliente.Id);
                 return View(NomeViewForm, model);
             }
             catch (Exception erro)
@@ -93,8 +94,8 @@ namespace CloudScales.Controllers
                 {
                     ViewBag.Operacao = Operacao;
                     PreencheDadosParaView(Operacao, model);
-                    PreparaListaEquipamentosParaCombo();
-                    PreparaListaCaminhaoParaCombo();
+                    PreparaListaEquipamentosParaCombo(clienteId);
+                    PreparaListaCaminhaoParaCombo(clienteId);
                     return View(NomeViewForm, model);
                 }
                 else
@@ -141,8 +142,8 @@ namespace CloudScales.Controllers
             {
                 ViewBag.Operacao = "A";
                 var model = DAO.Consulta(id);
-                PreparaListaEquipamentosParaCombo();
-                PreparaListaCaminhaoParaCombo();
+                PreparaListaEquipamentosParaCombo(id);
+                PreparaListaCaminhaoParaCombo(id);
                 ClienteViewModel cliente = new ClienteViewModel();
 
                 if (json == string.Empty || json == null)
@@ -176,10 +177,8 @@ namespace CloudScales.Controllers
                 return View("Error", new ErrorViewModel(erro.ToString()));
             }
         }
-        private void PreparaListaEquipamentosParaCombo()
+        private void PreparaListaEquipamentosParaCombo(int id)
         {
-            string json = HttpContext.Session.GetString("Logado");
-            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
             EquipamentoDAO dao = new EquipamentoDAO();
             var equipamentos = dao.ListaEquipamento(id);
             List<SelectListItem> listaEquip = new List<SelectListItem>();
@@ -192,10 +191,8 @@ namespace CloudScales.Controllers
             ViewBag.Equipamentos = listaEquip;
         }
 
-        private void PreparaListaCaminhaoParaCombo()
+        private void PreparaListaCaminhaoParaCombo(int id)
         {
-            string json = HttpContext.Session.GetString("Logado");
-            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
             CaminhaoDAO dao = new CaminhaoDAO();
             var caminhoes = dao.ListaCaminhao(id);
             List<SelectListItem> lista = new List<SelectListItem>();
