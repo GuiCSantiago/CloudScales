@@ -178,8 +178,10 @@ namespace CloudScales.Controllers
         }
         private void PreparaListaEquipamentosParaCombo()
         {
+            string json = HttpContext.Session.GetString("Logado");
+            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
             EquipamentoDAO dao = new EquipamentoDAO();
-            var equipamentos = dao.ListaEquipamento();
+            var equipamentos = dao.ListaEquipamento(id);
             List<SelectListItem> listaEquip = new List<SelectListItem>();
             listaEquip.Add(new SelectListItem("Selecione a Balança...", "0"));
             foreach (var equip in equipamentos)
@@ -192,8 +194,10 @@ namespace CloudScales.Controllers
 
         private void PreparaListaCaminhaoParaCombo()
         {
+            string json = HttpContext.Session.GetString("Logado");
+            int id = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
             CaminhaoDAO dao = new CaminhaoDAO();
-            var caminhoes = dao.ListaCaminhao();
+            var caminhoes = dao.ListaCaminhao(id);
             List<SelectListItem> lista = new List<SelectListItem>();
             lista.Add(new SelectListItem("Selecione o caminhão...", "0"));
             foreach (var caminhao in caminhoes)

@@ -42,21 +42,23 @@ namespace CloudScales.DAO
             Tabela = "Equipamento";
         }
 
-        public List<EquipamentoViewModel> ListaEquipamento()
+        public List<EquipamentoViewModel> ListaEquipamento(int id)
         {
+            SqlParameter[] parametro = { new SqlParameter("id", id) };
             List<EquipamentoViewModel> lista = new List<EquipamentoViewModel>();
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemEquipamento", null);
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemEquipamento", parametro);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
             return lista;
         }
 
-        public List<EquipamentoViewModel> ConsultaAvancadaEquipamento(string caminhaoID, string qtdBalanca)
+        public List<EquipamentoViewModel> ConsultaAvancadaEquipamento(string caminhaoID, string qtdBalanca, int id)
         {
             var p = new SqlParameter[]
             {
-            new SqlParameter("caminhaoID", caminhaoID),
-            new SqlParameter("qtdBalanca", qtdBalanca)
+                new SqlParameter("id", id),
+                new SqlParameter("caminhaoID", caminhaoID),
+                new SqlParameter("qtdBalanca", qtdBalanca)
             };
             List<EquipamentoViewModel> lista = new List<EquipamentoViewModel>();
             DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaEquipamento", p);

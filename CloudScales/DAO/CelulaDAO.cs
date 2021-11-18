@@ -58,13 +58,14 @@ namespace CloudScales.DAO
             return lista;
         }
 
-        public List<CelulaViewModel> ConsultaAvancadaCelula(string equipamentoID, string peso, string posicao)
+        public List<CelulaViewModel> ConsultaAvancadaCelula(string equipamentoID, string peso, string posicao, int id)
         {
             var p = new SqlParameter[]
             {
-            new SqlParameter("equipamentoID", equipamentoID),
-            new SqlParameter("peso", peso),
-            new SqlParameter("posicao", posicao)
+                new SqlParameter("id", id),
+                new SqlParameter("equipamentoID", equipamentoID),
+                new SqlParameter("peso", peso),
+                new SqlParameter("posicao", posicao)
             };
             List<CelulaViewModel> lista = new List<CelulaViewModel>();
             DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaCelula", p);

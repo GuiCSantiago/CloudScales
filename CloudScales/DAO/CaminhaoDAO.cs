@@ -46,21 +46,23 @@ namespace CloudScales.DAO
             Tabela = "Caminhao";
         }
 
-        public List<CaminhaoViewModel> ListaCaminhao()
+        public List<CaminhaoViewModel> ListaCaminhao(int id)
         {
+            SqlParameter[] parametro = { new SqlParameter("id", id) };
             List<CaminhaoViewModel> lista = new List<CaminhaoViewModel>();
-            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemCaminhao", null);
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spListagemCaminhao", parametro);
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
             return lista;
         }
         
-        public List<CaminhaoViewModel> ConsultaAvancadaCaminhao(string placa, string carreta)
+        public List<CaminhaoViewModel> ConsultaAvancadaCaminhao(string placa, string carreta, int id)
         {
             var p = new SqlParameter[]
             {
-            new SqlParameter("placa", placa),
-            new SqlParameter("carreta", carreta)
+                new SqlParameter("id", id),
+                new SqlParameter("placa", placa),
+                new SqlParameter("carreta", carreta)
             };
             List<CaminhaoViewModel> lista = new List<CaminhaoViewModel>();
             DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaAvancadaCaminhao", p);

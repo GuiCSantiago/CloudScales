@@ -1,6 +1,8 @@
 ﻿using CloudScales.DAO;
 using CloudScales.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,8 @@ namespace CloudScales.Controllers
         {
             try
             {
+                string json = HttpContext.Session.GetString("Logado");
+                var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
                 CelulaDAO dao = new CelulaDAO();
                 if (string.IsNullOrEmpty(equipamentoID))
                     equipamentoID = "";
@@ -36,7 +40,7 @@ namespace CloudScales.Controllers
                     peso = "";
                 if (string.IsNullOrEmpty(posicao))
                     posicao = "";
-                var lista = dao.ConsultaAvancadaCelula(equipamentoID, peso, posicao);
+                var lista = dao.ConsultaAvancadaCelula(equipamentoID, peso, posicao, model.Id);
                 return PartialView("pvGridCelula", lista);
             }
             catch (Exception erro)
