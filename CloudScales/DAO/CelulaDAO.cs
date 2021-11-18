@@ -44,6 +44,20 @@ namespace CloudScales.DAO
         {
             Tabela = "Celula";
         }
+
+        public List<CelulaViewModel> ConsultaPorEquipamento(int equipamentoID)
+        {
+            var p = new SqlParameter[]
+            {
+            new SqlParameter("id", equipamentoID),
+            };
+            List<CelulaViewModel> lista = new List<CelulaViewModel>();
+            DataTable tabela = HelperDAO.ExecutaProcSelect("spConsultaCelulaPorEquipamento", p);
+            foreach (DataRow registro in tabela.Rows)
+                lista.Add(MontaModel(registro));
+            return lista;
+        }
+
         public List<CelulaViewModel> ConsultaAvancadaCelula(string equipamentoID, string peso, string posicao)
         {
             var p = new SqlParameter[]
@@ -57,7 +71,6 @@ namespace CloudScales.DAO
             foreach (DataRow registro in tabela.Rows)
                 lista.Add(MontaModel(registro));
             return lista;
-
         }
     }
 }

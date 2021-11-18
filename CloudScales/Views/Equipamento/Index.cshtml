@@ -19,6 +19,7 @@
             <td>
                 <a href="/equipamento/Edit?id=@equip.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
                 <a onclick="deleteFunction(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
+                <a onclick="importaFunction(@equip.Id)"><img src="~/img/import.png" style="width: 35px;" /></a>
             </td>
         </tr>
     }
@@ -44,6 +45,36 @@
         }).then((willDelete) => {
             if (willDelete) {
                 location.href = 'equipamento/Delete?id=' + id;
+            }
+        });
+    }
+</script>
+
+<script>
+    function importaFunction(id) {
+
+        var linkAPI = '/equipamento/ImportaEntidade?id=' + id;
+        $.ajax({
+            url: linkAPI,
+            success: function (resposta) {
+                if (resposta)
+                {
+                    swal({
+                        title: "Sucesso!",
+                        text: "Entidade Importada com sucesso.",
+                        icon: "sucess",
+                        button: "OK",
+                    });
+                }
+                else
+                {
+                    swal({
+                        title: "Erro",
+                        text: "Erro na importação, verificar entiade.",
+                        icon: "error",
+                        button: "OK",
+                    });
+                }
             }
         });
     }

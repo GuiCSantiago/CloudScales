@@ -24,6 +24,7 @@ namespace CloudScales.Controllers
             if (model.QtdBalanca <= 0)
                 ModelState.AddModelError("QtdBalanca", "Preencha a quantidade!");
         }
+
         public IActionResult ObtemDadosConsultaAvancadaEquipamento(string caminhaoID, string qtdbalanca)
         {
             try
@@ -42,5 +43,13 @@ namespace CloudScales.Controllers
             }
         }
 
+        public async Task<bool> ImportaEntidade(int id)
+        {
+            EquipamentoDAO equipamentoDAO = new EquipamentoDAO();
+            EquipamentoViewModel equipamento = equipamentoDAO.Consulta(id);
+            RequisicaoDAO requisicaoDAO = new RequisicaoDAO();
+
+            return await requisicaoDAO.CriarEntidade(equipamento);
+        }
     }
 }
