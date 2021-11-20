@@ -20,6 +20,7 @@
                 <a href="/equipamento/Edit?id=@equip.Id"><img src="~/img/edit.png" style="width: 35px;" /></a>
                 <a onclick="deleteFunction(@equip.Id)"><img src="~/img/delete.png" style="width: 35px;" /></a>
                 <a onclick="importaFunction(@equip.Id)"><img src="~/img/import.png" style="width: 35px;" /></a>
+                <a asp-controller="Dashboard" asp-action="Equipamento" asp-route-id="@equip.Id" class="btn btn-primary">Dashboard</a>
             </td>
         </tr>
     }

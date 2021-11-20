@@ -1,4 +1,5 @@
-﻿using CloudScales.Models.ViewModels;
+﻿using CloudScales.Models.Exceptions;
+using CloudScales.Models.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,10 @@ namespace CloudScales.DAO
 {
     public class RequisicaoDAO 
     {
-        public async Task<RequisicaoViewModel.Root> Requisicao()
+        public async Task<RequisicaoViewModel.Root> Requisicao(int id)
         {
             //Requisição GET
-            string url = "http://18.222.178.90:1026/v2/entities?id=urn:ngsi-ld:entity:1";
+            string url = "http://18.222.178.90:1026/v2/entities?id=urn:ngsi-ld:entity:" +id;
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(url);
             client.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -27,8 +28,12 @@ namespace CloudScales.DAO
             //Console.WriteLine(response.StatusCode.GetTypeCode());
             //Console.WriteLine(status);
             string content = await response.Content.ReadAsStringAsync();
-            List<RequisicaoViewModel.Root> resposta = JsonConvert.DeserializeObject<List<RequisicaoViewModel.Root>>(content);
+            var resposta = new List<RequisicaoViewModel.Root>();
+            resposta = JsonConvert.DeserializeObject<List<RequisicaoViewModel.Root>>(content);
             //Console.WriteLine(resposta);
+            if (resposta.Count == 0)
+                throw new RequisicaoException("Falha na requisição, verifique o id enviado");
+
             return resposta.First();
         }
 

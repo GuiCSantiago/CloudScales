@@ -1,4 +1,5 @@
 ﻿using CloudScales.DAO;
+using CloudScales.Models.Exceptions;
 using CloudScales.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,17 +26,30 @@ namespace CloudScales.Controllers
             return View(caminhaoDAO.Consulta(id));
         }
 
-        public async Task<IActionResult> Equipamento()
-        {
-            return View(await requisicaoDAO.Requisicao());
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> AtualizaEquipamento()
+        public async Task<IActionResult> Equipamento(int id)
         {
             try
             {
-                var response = await requisicaoDAO.Requisicao();
+                RequisicaoViewModel.Root root = await requisicaoDAO.Requisicao(id);
+                return View(root);
+            }
+            catch (RequisicaoException erro)
+            {
+                ViewBag.Erro = erro.Message;
+                return View("Equipamento");
+            }
+            catch (Exception erro)
+            {
+                return View("Error", new ErrorViewModel(erro.ToString()));
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AtualizaEquipamento(int id)
+        {
+            try
+            {
+                var response = await requisicaoDAO.Requisicao(id);
 
                 return Json(new
                 {
