@@ -39,6 +39,7 @@ namespace CloudScales.Controllers
             string json = HttpContext.Session.GetString("Logado");
             var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
             ViewBag.NomeUser = model.Nome;
+            ViewBag.ClienteId = model.Id;
 
             try
             {
@@ -215,6 +216,7 @@ namespace CloudScales.Controllers
                 string json = HttpContext.Session.GetString("Logado");
                 var model = JsonConvert.DeserializeObject<ClienteViewModel>(json);
                 ViewBag.NomeUser = model.Nome;
+                ViewBag.ClienteId = model.Id;
 
                 return View(NomeViewBusca);
             }

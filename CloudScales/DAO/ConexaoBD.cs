@@ -11,7 +11,7 @@ namespace CloudScales.DAO
     {
         public static SqlConnection GetConexao()
         {
-            string strCon = "Data Source=DESKTOP-R8IKA6H\\SQLEXPRESS; Database=CloudScalesDB; user id=sa; password=123456";
+            string strCon = "Data Source=localhost; Database=CloudScalesDB; user id=sa; password=123456";
             SqlConnection conexao = new SqlConnection(strCon);
             conexao.Open();
             return conexao;

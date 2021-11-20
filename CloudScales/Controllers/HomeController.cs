@@ -15,8 +15,11 @@ namespace CloudScales.Controllers
         {
             string json = HttpContext.Session.GetString("Logado");
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
-            if(ViewBag.Logado)
+            if (ViewBag.Logado)
+            {
                 ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+                ViewBag.ClienteId = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
+            }                
             else
                 return RedirectToAction("index", "Login");
             return View();
@@ -28,6 +31,7 @@ namespace CloudScales.Controllers
 
             ViewBag.Logado = HelperControllers.VerificaUserLogado(HttpContext.Session);
             ViewBag.NomeUser = JsonConvert.DeserializeObject<ClienteViewModel>(json).Nome;
+            ViewBag.ClienteId = JsonConvert.DeserializeObject<ClienteViewModel>(json).Id;
             return View();
         }
     }

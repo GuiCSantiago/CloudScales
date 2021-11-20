@@ -69,7 +69,7 @@
                             </div>
                             <div class="row align-items-center">
                                 <div class="ml-auto logoff">
-                                    <p>Bem vindo(a) <a asp-area="" asp-controller="Cliente" asp-action="Edit">@ViewBag.NomeUser</a></p>
+                                    <p>Bem vindo(a) <a asp-area="" asp-controller="Cliente" asp-action="Edit" asp-route-id="@ViewBag.ClienteId">@ViewBag.NomeUser</a></p>
                                     <a class="btn btn-outline-danger ml-2" asp-area="" asp-controller="Login" asp-action="LogOff">Sair</a>
                                 </div>
                             </div>
