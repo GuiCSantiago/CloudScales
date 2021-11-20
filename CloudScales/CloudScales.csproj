@@ -7,19 +7,19 @@
 
   <ItemGroup>
     <Compile Remove="Models\Enum\**" />
+    <Compile Remove="Models\Itens\**" />
     <Content Remove="Models\Enum\**" />
+    <Content Remove="Models\Itens\**" />
     <EmbeddedResource Remove="Models\Enum\**" />
+    <EmbeddedResource Remove="Models\Itens\**" />
     <None Remove="Models\Enum\**" />
+    <None Remove="Models\Itens\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.19" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Itens\" />
   </ItemGroup>
 
 </Project>

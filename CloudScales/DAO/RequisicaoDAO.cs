@@ -28,16 +28,16 @@ namespace CloudScales.DAO
             //Console.WriteLine(status);
             string content = await response.Content.ReadAsStringAsync();
             List<RequisicaoViewModel.Root> resposta = JsonConvert.DeserializeObject<List<RequisicaoViewModel.Root>>(content);
-            Console.WriteLine(resposta);
+            //Console.WriteLine(resposta);
             return resposta.First();
         }
 
-        public async Task<bool> CriarEntidade(EquipamentoViewModel equipamento)
+        public async Task<bool> CriarEntidade(EquipamentoViewModel equipamento) //importa somente equipamentos com duas celulas
         {
             CelulaDAO celulaDAO = new CelulaDAO();
             try
             {
-                List<CelulaViewModel> celulas = celulaDAO.ConsultaPorEquipamento(equipamento.Id);
+                List<CelulaViewModel> celulas = celulaDAO.ConsultaPorEquipamento(equipamento.Id); // retorna células por ordem de posição
 
                 RequisicaoViewModel.Root root = new RequisicaoViewModel.Root();
                 RequisicaoViewModel.Metadata metadata = new RequisicaoViewModel.Metadata();
